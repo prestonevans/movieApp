@@ -384,7 +384,7 @@ a img{
 }
 
 .android-more-section {
-  padding: 80px 0;
+  padding: 30px 0;
   max-width: 1044px;
   margin-left: auto;
   margin-right: auto;
@@ -546,4 +546,25 @@ a img{
   .android-footer .mdl-mega-footer--bottom-section {
     display: none;
   }
+}
+
+h1 {
+  color: black
+}
+i{
+  font-size: 1.5rem;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+.icon-style{
+color: #757575;
+font-size: 3rem;
+}
+
+.mdl-layout__header-row {
+  padding: 0 40px 0 40px;
 }
