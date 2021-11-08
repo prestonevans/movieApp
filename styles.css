@@ -471,14 +471,14 @@ a img{
 
 
 /**** Mobile layout ****/
-@media (max-width: 900px) {
+/* @media (max-width: 900px) {
   .android-navigation-container {
     display: none;
-  }
+  } */
 
-  .android-title {
+  /* .android-title {
     display: none !important;
-  }
+  } */
 
   .android-mobile-title {
     display: block !important;
