@@ -24,17 +24,18 @@ a img {
 }
 
 ::-moz-selection {
-	background-color: #6ab344;
+	background-color: #00d473;
 	color: #fff;
 }
 
 ::selection {
-	background-color: #6ab344;
+	background-color: #00d473;
 	color: #fff;
 }
 
 .android-search-box .mdl-textfield__input {
 	color: rgba(0, 0, 0, 0.87);
+	transition: .3s ease-in;
 }
 
 .android-header .mdl-menu__container {
@@ -565,4 +566,18 @@ i {
 
 .mdl-color--accent {
 	background-color: #00d473 !important;
+}
+#view-source {
+	position: fixed;
+	display: block;
+	right: 0;
+	bottom: 0;
+	margin-right: 40px;
+	margin-bottom: 40px;
+	z-index: 900;
+}
+:focus {
+	outline: none;
+	border-bottom-color: #00d473;
+	border-width: 4px;
 }
