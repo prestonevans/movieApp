@@ -609,3 +609,8 @@ i {
 #search-field {
 	width: 200px;
 }
+body {
+	display: flex;
+	flex-flow: column;
+	justify-content: space-between;
+}
