@@ -554,3 +554,7 @@ i {
 .mdl-layout__header-row {
 	padding: 0 40px 0 40px;
 }
+
+.poweredBy {
+	width: 40%;
+}
