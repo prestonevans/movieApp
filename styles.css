@@ -414,6 +414,18 @@ a img {
 	position: absolute;
 	bottom: 0;
 	background-color: #ffffff;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.mdl-card__actions i {
+	padding-right: 16px;
+	color: rgba(117, 117, 117, .4);
+	transition: .2s ease-in;
+}
+.mdl-card__actions i:hover {
+	color: rgba(0, 212, 115, .5);
+	cursor: pointer;
 }
 
 .android-card-container .mdl-card__actions a {
