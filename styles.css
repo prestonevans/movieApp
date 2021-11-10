@@ -406,11 +406,14 @@ a img {
 	height: auto;
 	color: black;
 	padding-bottom: 48px;
+	height: 200px;
+	overflow: scroll;
 }
 
 .android-card-container .mdl-card__actions {
 	position: absolute;
 	bottom: 0;
+	background-color: #ffffff;
 }
 
 .android-card-container .mdl-card__actions a {
