@@ -576,7 +576,7 @@ i {
 	color: #00d473;
 }
 #view-source {
-	background-color: #00d473;
+	background: linear-gradient(29deg, #00d473, #a3a3ef);
 	visibility: hidden;
 	transition: .2s ease-in;
 }
