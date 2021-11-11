@@ -659,3 +659,9 @@ body {
 		padding: 1rem .25rem;
 	}
 }
+
+#noResults {font-size: 8vw;
+	width: 100%;
+	padding: 100px 0;
+   text-align: center;
+;}

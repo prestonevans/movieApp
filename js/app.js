@@ -2,52 +2,78 @@ let movieSearchQuery = 'venom';
 let pageNum = 1;
 let apiKey = `00d9cfd2d63643eb08d2411d55b3a170`;
 let heading = 'Featured Movies';
-function movieSearch(cb) {
-	fetch(
-		`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${movieSearchQuery}%20&page=${pageNum}&include_adult=false`
-	)
-		.then((response) => response.json())
-		.then((data) => cb(data));
-}
+let movie_id = `370172`
+// OnLoad
 function trendingMovies(cb) {
-	fetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}`)
-		.then((response) => response.json())
-		.then((data) => cb(data));
+  fetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}`)
+    .then((response) => response.json())
+    .then((data) => cb(data));
 }
-// function findByID(cb) {
-//     fetch(`https://api.themoviedb.org/3/search/movie?api_key=00d9cfd2d63643eb08d2411d55b3a170&language=en-US&query=${movieSearch}%20&page=1&include_adult=false`)
-//         .then(response => response.json())
-//         .then(data => cb(data));
-// }
-// function popularMovies(cb) {
-//     fetch(`https://api.themoviedb.org/3/search/movie?api_key=00d9cfd2d63643eb08d2411d55b3a170&language=en-US&query=${movieSearch}%20&page=1&include_adult=false`)
-//         .then(response => response.json())
-//         .then(data => cb(data));
-// }
-// function movieGenres(cb) {
-//     fetch(`https://api.themoviedb.org/3/search/movie?api_key=00d9cfd2d63643eb08d2411d55b3a170&language=en-US&query=${movieSearch}%20&page=1&include_adult=false`)
-//         .then(response => response.json())
-//         .then(data => cb(data));
-// }
-// movieSearch(getApi)
-// trendingMovies(getApi)
+//OnSearch
+function movieSearch(cb) {
+  fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${movieSearchQuery}%20&page=${pageNum}&include_adult=false`)
+    .then((response) => response.json())
+    .then((data) => cb(data));
+}
+//DetailsPage
+function movieDetails(cb) {
+  fetch(`https://api.themoviedb.org/3/movie/${movie_id}?api_key=${apiKey}&language=en-US`)
+    .then(response => response.json())
+    .then(data => cb(data));
+}
+function movieVideos(cb) {
+  fetch(`https://api.themoviedb.org/3/movie/${movie_id}/videos?api_key=${apiKey}&language=en-US`)
+    .then(response => response.json())
+    .then(data => cb(data));
+}
+function movieCredits(cb) {
+  fetch(`https://api.themoviedb.org/3/movie/${movie_id}/credits?api_key=${apiKey}&language=en-US`)
+    .then(response => response.json())
+    .then(data => cb(data));
+}
+function releaseDate(cb) {
+  fetch(`https://api.themoviedb.org/3/movie/${movie_id}/release_dates?api_key=${apiKey}`)
+    .then(response => response.json())
+    .then(data => cb(data));
+}
+function similarMovies(cb) {
+  fetch(`https://api.themoviedb.org/3/movie/${movie_id}/similar?api_key=${apiKey}&language=en-US&page=1`)
+    .then(response => response.json())
+    .then(data => cb(data));
+}
+function movieReviews(cb) {
+  fetch(`https://api.themoviedb.org/3/movie/${movie_id}/reviews?api_key=${apiKey}&language=en-US&page=1`)
+    .then(response => response.json())
+    .then(data => cb(data));
+}
+movieDetails(getApi)
+// movieReviews(getApi)
+// movieVideos(getApi)
+// movieCredits(getApi)
+// releaseDate(getApi)
+// similarMovies(getApi)
 function getApi(data) {
-	console.log(data);
+  console.log(data);
 }
 trendingMovies(render);
 function render(data) {
-	let imageSource = ``;
-	let trendingHTML = `<div class="android-more-section
+  if (data.results.length == 0) {
+    document.getElementById('movieCards').innerHTML = `<div><p id="noResults">Your query returned 0 results</p><div>`
+    console.log("Try Again")
+  }
+  console.log(data)
+  let imageSource = ``;
+  let trendingHTML = `<div class="android-more-section
     ">
     <div class="android-section-title mdl-typography--display-1-color-contrast center">${heading}</div>
     <div class="android-card-container mdl-grid">`;
-	for (let i = 0; i < 20; i++) {
-		if (data.results[i].poster_path === null) {
-			imageSource = 'default-movie.png';
-		} else {
-			imageSource = `https://image.tmdb.org/t/p/w500/${data.results[i].poster_path}`;
-		}
-		trendingHTML += `
+  for (let i = 0; i < 20; i++) {
+    if (data.results[i].poster_path === null) {
+      imageSource = 'default-movie.png';
+    } else {
+      imageSource = `https://image.tmdb.org/t/p/w500/${data.results[i].poster_path}`;
+    }
+    trendingHTML += `
           <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
             <div class="mdl-card__media">
             <img src="${imageSource}">
@@ -65,22 +91,48 @@ function render(data) {
               <i class="fa-solid fa-heart"></i>
             </div>
           </div>`;
-	}
-	document.getElementById('movieCards').innerHTML = trendingHTML;
+  }
+  document.getElementById('movieCards').innerHTML = trendingHTML;
+}
+
+movieDetails(detailsRender)
+function detailsRender(data) {
+  console.log("true")
+  console.log(data)
+  let detailsHTML = `<div class="android-wear-section" style = "background: url('https://image.tmdb.org/t/p/w500${data.backdrop_path}'); background-size: cover; background-position: center;">
+  <div class="mask"></div>
+  <div class="android-wear-band">
+    <img src="https://image.tmdb.org/t/p/w500${data.poster_path}" alt="movie">
+    <div class="android-wear-band-text">
+      <div class="mdl-typography--display-2 mdl-typography--font-thin">${data.original_title}</div>
+      <div class="mdl-typography--display-1 mdl-typography--font-thin">Overview</div>
+
+      <p class="mdl-typography--headline mdl-typography--font-thin">
+      ${data.overview}
+      </p>
+      <p>
+        <a class="mdl-typography--font-regular mdl-typography--text-uppercase android-alt-link" href="">
+          See what's new in the Play Store&nbsp;<i class="material-icons">chevron_right</i>
+        </a>
+      </p>
+    </div>
+  </div>
+</div>`
+  document.getElementById('movieCards').innerHTML = detailsHTML;
 }
 
 function searchInput() {
-	heading = 'Search Results';
-	movieSearchQuery = document.getElementById('search-field').value.trim();
-	movieSearch(render);
+  heading = 'Search Results';
+  movieSearchQuery = document.getElementById('search-field').value.trim();
+  movieSearch(render);
 }
 // show and hide back to top button
-window.onscroll = function() {
-	if (scrollY >= 1000) {
-		document.getElementById('view-source').style.visibility = 'visible';
-		document.getElementById('view-source').style.opacity = 1;
-	} else {
-		document.getElementById('view-source').style.visibility = 'hidden';
-		document.getElementById('view-source').style.opacity = 0;
-	}
+window.onscroll = function () {
+  if (scrollY >= 1000) {
+    document.getElementById('view-source').style.visibility = 'visible';
+    document.getElementById('view-source').style.opacity = 1;
+  } else {
+    document.getElementById('view-source').style.visibility = 'hidden';
+    document.getElementById('view-source').style.opacity = 0;
+  }
 };
