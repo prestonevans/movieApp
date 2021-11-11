@@ -577,6 +577,8 @@ i {
 }
 #view-source {
 	background-color: #00d473;
+	visibility: hidden;
+	transition: .2s ease-in;
 }
 
 .mdl-color--accent {
