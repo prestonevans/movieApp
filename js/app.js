@@ -11,13 +11,16 @@ function trendingMovies(cb) {
 }
 //OnSearch
 function movieSearch(cb) {
-  fetch(
-    `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${movieSearchQuery}%20&page=${pageNum}&include_adult=false`
-  )
+  fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${movieSearchQuery}%20&page=${pageNum}&include_adult=false`)
     .then((response) => response.json())
     .then((data) => cb(data));
 }
 //DetailsPage
+function movieDetails(cb) {
+  fetch(`https://api.themoviedb.org/3/movie/${movie_id}?api_key=${apiKey}&language=en-US`)
+    .then(response => response.json())
+    .then(data => cb(data));
+}
 function movieVideos(cb) {
   fetch(`https://api.themoviedb.org/3/movie/${movie_id}/videos?api_key=${apiKey}&language=en-US`)
     .then(response => response.json())
@@ -43,7 +46,7 @@ function movieReviews(cb) {
     .then(response => response.json())
     .then(data => cb(data));
 }
-
+movieDetails(getApi)
 // movieReviews(getApi)
 // movieVideos(getApi)
 // movieCredits(getApi)
@@ -90,6 +93,32 @@ function render(data) {
           </div>`;
   }
   document.getElementById('movieCards').innerHTML = trendingHTML;
+}
+
+movieDetails(detailsRender)
+function detailsRender(data) {
+  console.log("true")
+  console.log(data)
+  let detailsHTML = `<div class="android-wear-section" style = "background: url('https://image.tmdb.org/t/p/w500${data.backdrop_path}'); background-size: cover; background-position: center;">
+  <div class="mask"></div>
+  <div class="android-wear-band">
+    <img src="https://image.tmdb.org/t/p/w500${data.poster_path}" alt="movie">
+    <div class="android-wear-band-text">
+      <div class="mdl-typography--display-2 mdl-typography--font-thin">${data.original_title}</div>
+      <div class="mdl-typography--display-1 mdl-typography--font-thin">Overview</div>
+
+      <p class="mdl-typography--headline mdl-typography--font-thin">
+      ${data.overview}
+      </p>
+      <p>
+        <a class="mdl-typography--font-regular mdl-typography--text-uppercase android-alt-link" href="">
+          See what's new in the Play Store&nbsp;<i class="material-icons">chevron_right</i>
+        </a>
+      </p>
+    </div>
+  </div>
+</div>`
+  document.getElementById('movieCards').innerHTML = detailsHTML;
 }
 
 function searchInput() {
