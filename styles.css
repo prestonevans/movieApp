@@ -299,15 +299,14 @@ a img {
 	position: relative;
 	background: url('images/wear.png') center top no-repeat;
 	background-size: cover;
-	height: 800px;
+	min-height: 800px;
 }
 
 .android-wear-band {
-	position: absolute;
+	position: relative;
 	bottom: 0;
 	width: 100%;
 	text-align: center;
-	background-color: #37474f;
 }
 
 .android-wear-band-text {
@@ -635,6 +634,23 @@ body {
 	flex-flow: column;
 	justify-content: space-between;
 }
+.mask {
+	background-color: black;
+	opacity: .7;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: 0;
+}
+.android-wear-band img {
+	position: relative;
+	width: 60%;
+	height: 600px;
+	object-fit: cover;
+	object-position: center;
+	padding-top: 1rem;
+}
+
 @media only screen and (max-width: 350px) {
 	.newNav {
 		padding: 1rem .25rem;
