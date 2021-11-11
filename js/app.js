@@ -44,16 +44,20 @@ function movieReviews(cb) {
     .then(data => cb(data));
 }
 
-movieReviews(getApi)
-movieVideos(getApi)
-movieCredits(getApi)
-releaseDate(getApi)
-similarMovies(getApi)
+// movieReviews(getApi)
+// movieVideos(getApi)
+// movieCredits(getApi)
+// releaseDate(getApi)
+// similarMovies(getApi)
 function getApi(data) {
   console.log(data);
 }
 trendingMovies(render);
 function render(data) {
+  if (data.results.length == 0) {
+    document.getElementById('movieCards').innerHTML = `<div><p id="noResults">Your query returned 0 results</p><div>`
+    console.log("Try Again")
+  }
   console.log(data)
   let imageSource = ``;
   let trendingHTML = `<div class="android-more-section
