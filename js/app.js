@@ -85,7 +85,7 @@ function render(data) {
               <span class="mdl-typography--font-light mdl-typography--subhead">${data.results[i].overview}</span>
             </div>
             <div class="mdl-card__actions">
-              <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" href="">
+              <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" onclick="viewDetails(${data.results[i].id})">
                 More Details
               </a>
               <i class="fa-solid fa-heart"></i>
@@ -94,8 +94,11 @@ function render(data) {
   }
   document.getElementById('movieCards').innerHTML = trendingHTML;
 }
+function viewDetails(id) {
+  movie_id = id
+  movieDetails(detailsRender)
 
-movieDetails(detailsRender)
+}
 function detailsRender(data) {
   console.log("true")
   console.log(data)
@@ -111,13 +114,21 @@ function detailsRender(data) {
       ${data.overview}
       </p>
       <p>
-        <a class="mdl-typography--font-regular mdl-typography--text-uppercase android-alt-link" href="">
-          See what's new in the Play Store&nbsp;<i class="material-icons">chevron_right</i>
-        </a>
+      
+      </p>
+      <div class="mdl-typography--display-1 mdl-typography--font-thin">Your Rating</div>
+      <p>
+      
+        <i class="far fa-star liked"></i>
+        <i class="far fa-star liked"></i>
+        <i class="far fa-star liked"></i>
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
       </p>
     </div>
   </div>
-</div>`
+</div>
+          </div>`
   document.getElementById('movieCards').innerHTML = detailsHTML;
 }
 
