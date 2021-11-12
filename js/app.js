@@ -15,7 +15,7 @@ function trendingMovies(cb) {
 		.then((response) => response.json())
 		.then((data) => cb(data));
 }
-//OnSearch
+//OnSearchgit
 function movieSearch(cb) {
 	fetch(
 		`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${movieSearchQuery}%20&page=${pageNum}&include_adult=false`
