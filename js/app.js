@@ -87,7 +87,7 @@ function render(data) {
               <span class="mdl-typography--font-light mdl-typography--subhead">${data.results[i].overview}</span>
             </div>
             <div class="mdl-card__actions">
-              <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" onclick="viewDetails(${data
+              <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" href="#top" onclick="viewDetails(${data
 					.results[i].id})">
                 More Details
               </a>
