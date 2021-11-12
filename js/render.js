@@ -35,7 +35,6 @@ function render(data) {
             </div>
             `;
     }
-    trendingHTML += `<button onclick="loadMore()">Load More</button>`
     document.getElementById('movieCards').innerHTML = trendingHTML;
 }
 function loadMore() {

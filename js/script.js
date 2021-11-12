@@ -42,3 +42,13 @@ window.onscroll = function () {
     document.getElementById('view-source').style.opacity = 0;
   }
 };
+
+$(function () {
+  let $win = $(window);
+  $win.scroll(function () {
+    if ($win.height() + $win.scrollTop()
+      == $(document).height()) {
+      loadMore()
+    }
+  });
+});
