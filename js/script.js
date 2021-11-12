@@ -8,7 +8,13 @@ nameInput.addEventListener('keyup', (e) => {
 trendingMovies(render);
 
 function searchInput() {
+  currentRender = `search`
   heading = 'Search Results';
+  trendingHTML = `<div class="android-more-section
+  ">
+  <div class="android-section-title mdl-typography--display-1-color-contrast center">${heading}</div>
+  <div class="android-card-container mdl-grid">`
+  pageNum = 1
   movieSearchQuery = document.getElementById('search-field').value.trim();
   movieSearch(render);
 }

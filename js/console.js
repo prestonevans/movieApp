@@ -4,6 +4,7 @@
 // movieCredits(getApi)
 // releaseDate(getApi)
 // similarMovies(getApi)
+trendingMovies(getApi)
 function getApi(data) {
     console.log(data);
 }

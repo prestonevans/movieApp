@@ -1,6 +1,6 @@
 // OnLoad
 function trendingMovies(cb) {
-    fetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}`)
+    fetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}&page=${pageNum}`)
         .then((response) => response.json())
         .then((data) => cb(data));
 }

@@ -1,14 +1,13 @@
+let trendingHTML = `<div class="android-more-section
+">
+<div class="android-section-title mdl-typography--display-1-color-contrast center">${heading}</div>
+<div class="android-card-container mdl-grid">`
 function render(data) {
     if (data.results == null) {
         document.getElementById('movieCards').innerHTML = `<p id="noResults">Your query returned 0 results</p>`;
         return;
     }
-    console.log(data);
     let imageSource = ``;
-    let trendingHTML = `<div class="android-more-section
-      ">
-      <div class="android-section-title mdl-typography--display-1-color-contrast center">${heading}</div>
-      <div class="android-card-container mdl-grid">`;
     for (let i = 0; i < 20; i++) {
         if (data.results[i].poster_path === null) {
             imageSource = 'default-movie.png';
@@ -33,9 +32,20 @@ function render(data) {
                 </a>
                 <i class="fa-solid fa-heart" onclick="saveMovie(${data.results[i].id})"></i>
               </div>
-            </div>`;
+            </div>
+            `;
     }
+    trendingHTML += `<button onclick="loadMore()">Load More</button>`
     document.getElementById('movieCards').innerHTML = trendingHTML;
+}
+function loadMore() {
+    pageNum += 1
+    if (currentRender == 'trending') {
+        trendingMovies(render)
+    }
+    else if (currentRender == 'search') {
+        movieSearch(render)
+    }
 }
 function viewDetails(id) {
     movie_id = id;
