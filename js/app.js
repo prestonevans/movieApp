@@ -3,6 +3,7 @@ let pageNum = 1;
 let apiKey = `00d9cfd2d63643eb08d2411d55b3a170`;
 let heading = 'Featured Movies';
 let movie_id = `370172`;
+let savedMovies = []
 // OnLoad
 function trendingMovies(cb) {
   fetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}`)
@@ -87,13 +88,13 @@ function render(data) {
               <span class="mdl-typography--font-light mdl-typography--subhead">${data.results[i].overview}</span>
             </div>
             <div class="mdl-card__actions">
-              <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" href="#top" onclick="viewDetails(${data
+            <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" href="#top" onclick="viewDetails(${data
         .results[i].id})">
-                More Details
+              More Details
               </a>
-              <i class="fa-solid fa-heart"></i>
-            </div>
-          </div>`;
+              <i class="fa-solid fa-heart" onclick = "saveMovie(${data.results[i].id})"></i>
+              </div>
+              </div>`;
   }
   document.getElementById('movieCards').innerHTML = trendingHTML;
 }
@@ -108,29 +109,29 @@ function detailsRender(data) {
   <div class="mask"></div>
   <div class="android-wear-band">
   <div id="trailer"></div>
-    <div class="android-wear-band-text">
-      <div class="mdl-typography--display-2 mdl-typography--font-thin">${data.original_title}</div>
-      <div class="mdl-typography--display-1 mdl-typography--font-thin">Overview</div>
-
-      <p class="mdl-typography--headline mdl-typography--font-thin">
-      ${data.overview}
-      </p>
-      <p>
-      
-      </p>
-      <div class="mdl-typography--display-1 mdl-typography--font-thin">Your Rating</div>
-      <p>
-      
-        <i class="far fa-star liked"></i>
-        <i class="far fa-star liked"></i>
-        <i class="far fa-star liked"></i>
-        <i class="far fa-star"></i>
-        <i class="far fa-star"></i>
-      </p>
-    </div>
+  <div class="android-wear-band-text">
+  <div class="mdl-typography--display-2 mdl-typography--font-thin">${data.original_title}</div>
+  <div class="mdl-typography--display-1 mdl-typography--font-thin">Overview</div>
+  
+  <p class="mdl-typography--headline mdl-typography--font-thin">
+  ${data.overview}
+  </p>
+  <p>
+  
+  </p>
+  <div class="mdl-typography--display-1 mdl-typography--font-thin">Your Rating</div>
+  <p>
+  
+  <i class="far fa-star liked"></i>
+  <i class="far fa-star liked"></i>
+  <i class="far fa-star liked"></i>
+  <i class="far fa-star"></i>
+  <i class="far fa-star"></i>
+  </p>
   </div>
-</div>
-          </div>`;
+  </div>
+  </div>
+  </div>`;
   document.getElementById('movieCards').innerHTML = detailsHTML;
   movieVideos(insertTrailer)
 }
@@ -140,11 +141,24 @@ function insertTrailer(data) {
   allowfullscreen></iframe>`
   document.getElementById("trailer").innerHTML = trailerHTML
 }
-
 function searchInput() {
   heading = 'Search Results';
   movieSearchQuery = document.getElementById('search-field').value.trim();
   movieSearch(render);
+}
+function saveMovie(id) {
+  if (savedMovies.length == 0) {
+    savedMovies.push(id)
+  }
+  else {
+    for (let movie of savedMovies) {
+      if (movie == id) {
+        return
+      }
+    }
+    savedMovies.push(id)
+  }
+  console.log(savedMovies)
 }
 // show and hide back to top button
 window.onscroll = function () {
