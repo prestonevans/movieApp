@@ -15,8 +15,7 @@ function movieSearch(cb) {
     `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${movieSearchQuery}%20&page=${pageNum}&include_adult=false`
   )
     .then((response) => response.json())
-    .then((data) => cb(data))
-    .catch((data) => cb(data));
+    .then((data) => cb(data));
 }
 //DetailsPage
 function movieDetails(cb) {
