@@ -653,15 +653,14 @@ body {
 .liked {
 	color: #00d473;
 }
+#noResults {
+	font-size: calc(5vmin + .5rem);
+	text-align: center;
+	line-height: initial;
+}
 
 @media only screen and (max-width: 350px) {
 	.newNav {
 		padding: 1rem .25rem;
 	}
 }
-
-#noResults {font-size: 8vw;
-	width: 100%;
-	padding: 100px 0;
-   text-align: center;
-;}
