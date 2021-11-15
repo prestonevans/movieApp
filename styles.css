@@ -622,6 +622,7 @@ i {
 .newNav a {
 	margin-right: 1rem;
 	transition: .2s ease-in;
+	cursor: pointer;
 }
 .rightNav a:hover {
 	color: #00d473;
@@ -667,14 +668,12 @@ body {
 	line-height: initial;
 }
 
+[for='search-field']:hover i {
+	color: #00d473;
+}
+
 @media only screen and (max-width: 350px) {
 	.newNav {
 		padding: 1rem .25rem;
 	}
-}
-
-form {
-	display: flex;
-	flex-grow: 1;
-	justify-content: flex-end;
 }
