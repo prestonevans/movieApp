@@ -55,6 +55,16 @@ function viewSaved() {
   <div class="android-card-container mdl-grid">`;
   savedAPICall()
 }
+function deleteMovie(id) {
+  let index = savedMovies.indexOf(id)
+  savedMovies.splice(index, 1)
+  trendingHTML = `<div class="android-more-section
+  ">
+  <div class="android-section-title mdl-typography--display-1-color-contrast center">${heading}</div>
+  <div class="android-card-container mdl-grid">`;
+  save()
+  savedAPICall()
+}
 // show and hide back to top button
 window.onscroll = function () {
   if (scrollY >= 1000) {

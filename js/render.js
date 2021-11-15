@@ -121,7 +121,7 @@ function savedMoviesRender(data) {
       .id})">
                 More Details
               </a>
-              <i class="fa-solid fa-heart" onclick="saveMovie(${data.id})"></i>
+              <button onclick="deleteMovie(${data.id})">Delete</button>
             </div>
           </div>
           `;
