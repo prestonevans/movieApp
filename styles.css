@@ -672,6 +672,10 @@ body {
 	color: #00d473;
 }
 
+html {
+	scroll-behavior: smooth;
+}
+
 @media only screen and (max-width: 350px) {
 	.newNav {
 		padding: 1rem .25rem;
