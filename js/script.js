@@ -1,10 +1,12 @@
+trendingMovies(render);
+
+
 let nameInput = document.getElementById('search-field');
 nameInput.addEventListener('keyup', (e) => {
   if (e.keyCode === 13) {
     searchInput();
   }
 });
-trendingMovies(render);
 function resetFeatured() {
   currentRender = `featured`;
   heading = 'Featured Movies';
@@ -39,6 +41,15 @@ function saveMovie(id) {
     savedMovies.push(id);
   }
   console.log(savedMovies);
+  save()
+}
+function viewSaved() {
+  heading = 'Saved Movies'
+  trendingHTML = `<div class="android-more-section
+  ">
+  <div class="android-section-title mdl-typography--display-1-color-contrast center">${heading}</div>
+  <div class="android-card-container mdl-grid">`;
+  savedAPICall()
 }
 // show and hide back to top button
 window.onscroll = function () {
@@ -50,7 +61,7 @@ window.onscroll = function () {
     document.getElementById('view-source').style.opacity = 0;
   }
 };
-
+//EndLess Scroll
 $(function () {
   let $win = $(window);
   $win.scroll(function () {
@@ -59,4 +70,3 @@ $(function () {
     }
   });
 });
-
