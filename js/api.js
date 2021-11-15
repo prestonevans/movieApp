@@ -12,6 +12,12 @@ function movieSearch(cb) {
         .then((response) => response.json())
         .then((data) => cb(data));
 }
+//SavedMovies
+function savedMoviesRetrieve(cb) {
+    fetch(`https://api.themoviedb.org/3/movie/${currentSaved}?api_key=${apiKey}&language=en-US`)
+        .then((response) => response.json())
+        .then((data) => cb(data));
+}
 //DetailsPage
 function movieDetails(cb) {
     fetch(`https://api.themoviedb.org/3/movie/${movie_id}?api_key=${apiKey}&language=en-US`)

@@ -92,3 +92,47 @@ function insertTrailer(data) {
     allowfullscreen></iframe>`;
 	document.getElementById('trailer').innerHTML = trailerHTML;
 }
+
+function savedAPICall() {
+  endlessScroll = false
+  console.log(savedMovies)
+  let imageSource = ``;
+  for (let i = 0; i < savedMovies.length; i++) {
+    currentSaved = savedMovies[i]
+    console.log(currentSaved)
+    console.log(savedMovies[i])
+    savedMoviesRetrieve(savedMoviesRender)
+  }
+}
+let savedHTML = ''
+function savedMoviesRender(data) {
+  console.log(data)
+  let imageSource = ''
+  if (data.poster_path === null) {
+    imageSource = 'default-movie.png';
+  } else {
+    imageSource = `https://image.tmdb.org/t/p/w500/${data.poster_path}`;
+  }
+  trendingHTML += `
+          <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
+            <div class="mdl-card__media">
+            <img src="${imageSource}">
+            </div>
+            <div class="mdl-card__title">
+              <h4 class="mdl-card__title-text">${data.original_title}</h4>
+            </div>
+            <div class="mdl-card__supporting-text">
+              <span class="mdl-typography--font-light mdl-typography--subhead">${data.overview}</span>
+            </div>
+            <div class="mdl-card__actions">
+              <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" href="#top" onclick="viewDetails(${data
+      .id})">
+                More Details
+              </a>
+              <i class="fa-solid fa-heart" onclick="saveMovie(${data.id})"></i>
+            </div>
+          </div>
+          `;
+  document.getElementById('movieCards').innerHTML = trendingHTML;
+}
+
