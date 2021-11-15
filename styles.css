@@ -300,6 +300,8 @@ a img {
 	background: url('images/wear.png') center top no-repeat;
 	background-size: cover;
 	min-height: 800px;
+	display: flex;
+	align-items: center;
 }
 
 .android-wear-band {
@@ -316,11 +318,6 @@ a img {
 	text-align: left;
 	color: white;
 }
-
-.android-wear-band-text p {
-	padding-top: 8px;
-}
-
 .android-link {
 	text-decoration: none;
 }
@@ -676,6 +673,18 @@ html {
 	scroll-behavior: smooth;
 }
 
+.android-wear-section p {
+	margin: 0;
+}
+#trailer {
+	margin-top: 24px;
+}
+.mdl-typography--display-2 {
+	margin-bottom: .25em;
+}
+#overview {
+	margin-bottom: .5em;
+}
 @media only screen and (max-width: 350px) {
 	.newNav {
 		padding: 1rem .25rem;

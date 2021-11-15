@@ -63,15 +63,11 @@ function detailsRender(data) {
         <div class="mdl-typography--display-2 mdl-typography--font-thin">${data.original_title}</div>
         <div class="mdl-typography--display-1 mdl-typography--font-thin">Overview</div>
   
-        <p class="mdl-typography--headline mdl-typography--font-thin">
+        <p id='overview'class="mdl-typography--headline mdl-typography--font-thin">
         ${data.overview}
-        </p>
-        <p>
-        
         </p>
         <div class="mdl-typography--display-1 mdl-typography--font-thin">Your Rating</div>
         <p>
-        
           <i class="far fa-star liked"></i>
           <i class="far fa-star liked"></i>
           <i class="far fa-star liked"></i>
