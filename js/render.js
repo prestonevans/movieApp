@@ -3,19 +3,19 @@ let trendingHTML = `<div class="android-more-section
 <div class="android-section-title mdl-typography--display-1-color-contrast center">${heading}</div>
 <div class="android-card-container mdl-grid">`;
 function render(data) {
-  endlessScroll = true;
-  if (data.results == null) {
-    document.getElementById('movieCards').innerHTML = `<p id="noResults">Your query returned 0 results</p>`;
-    return;
-  }
-  let imageSource = ``;
-  for (let i = 0; i < 20; i++) {
-    if (data.results[i].poster_path === null) {
-      imageSource = 'default-movie.png';
-    } else {
-      imageSource = `https://image.tmdb.org/t/p/w500/${data.results[i].poster_path}`;
-    }
-    trendingHTML += `
+	endlessScroll = true;
+	if (data.results == null) {
+		document.getElementById('movieCards').innerHTML = `<p id="noResults">Your query returned 0 results</p>`;
+		return;
+	}
+	let imageSource = ``;
+	for (let i = 0; i < 20; i++) {
+		if (data.results[i].poster_path === null) {
+			imageSource = 'default-movie.png';
+		} else {
+			imageSource = `https://image.tmdb.org/t/p/w500/${data.results[i].poster_path}`;
+		}
+		trendingHTML += `
             <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
               <div class="mdl-card__media">
               <img src="${imageSource}">
@@ -24,37 +24,38 @@ function render(data) {
                 <h4 class="mdl-card__title-text">${data.results[i].original_title}</h4>
               </div>
               <div class="mdl-card__supporting-text">
+              <div class="mask2"></div>
                 <span class="mdl-typography--font-light mdl-typography--subhead">${data.results[i].overview}</span>
               </div>
               <div class="mdl-card__actions">
                 <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" href="#top" onclick="viewDetails(${data
-        .results[i].id})">
+					.results[i].id})">
                   More Details
                 </a>
                 <i class="fa-solid fa-heart" onclick="saveMovie(${data.results[i].id})"></i>
               </div>
             </div>
             `;
-  }
-  document.getElementById('movieCards').innerHTML = trendingHTML;
+	}
+	document.getElementById('movieCards').innerHTML = trendingHTML;
 }
 function loadMore() {
-  if (endlessScroll == true) {
-    pageNum += 1;
-    if (currentRender == 'trending') {
-      trendingMovies(render);
-    } else if (currentRender == 'search') {
-      movieSearch(render);
-    }
-  }
+	if (endlessScroll == true) {
+		pageNum += 1;
+		if (currentRender == 'trending') {
+			trendingMovies(render);
+		} else if (currentRender == 'search') {
+			movieSearch(render);
+		}
+	}
 }
 function viewDetails(id) {
-  movie_id = id;
-  movieDetails(detailsRender);
+	movie_id = id;
+	movieDetails(detailsRender);
 }
 function detailsRender(data) {
-  endlessScroll = false
-  let detailsHTML = `<div class="android-wear-section" style = "background: url('https://image.tmdb.org/t/p/w500${data.backdrop_path}'); background-size: cover; background-position: center;">
+	endlessScroll = false;
+	let detailsHTML = `<div class="android-wear-section" style = "background: url('https://image.tmdb.org/t/p/w500${data.backdrop_path}'); background-size: cover; background-position: center;">
     <div class="mask"></div>
     <div class="android-wear-band">
     <div id="trailer"></div>
@@ -81,15 +82,15 @@ function detailsRender(data) {
     </div>
   </div>
             </div>`;
-  document.getElementById('movieCards').innerHTML = detailsHTML;
-  movieVideos(insertTrailer);
+	document.getElementById('movieCards').innerHTML = detailsHTML;
+	movieVideos(insertTrailer);
 }
 function insertTrailer(data) {
-  let trailerHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/${data.results[0]
-    .key}" title="YouTube video player"
+	let trailerHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/${data.results[0]
+		.key}" title="YouTube video player"
     frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
     allowfullscreen></iframe>`;
-  document.getElementById('trailer').innerHTML = trailerHTML;
+	document.getElementById('trailer').innerHTML = trailerHTML;
 }
 
 function savedAPICall() {
