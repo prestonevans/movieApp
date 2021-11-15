@@ -406,7 +406,8 @@ a img {
 	color: black;
 	padding-bottom: 48px;
 	height: 200px;
-	overflow: scroll;
+	overflow: hidden;
+	position: relative;
 }
 
 .android-card-container .mdl-card__actions {
@@ -637,6 +638,13 @@ body {
 .mask {
 	background-color: black;
 	opacity: .7;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: 0;
+}
+.mask2 {
+	background: linear-gradient(360deg, white, transparent);
 	position: absolute;
 	width: 100%;
 	height: 100%;
