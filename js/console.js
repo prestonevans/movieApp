@@ -1,4 +1,4 @@
-movieDetails(getApi);
+// movieDetails(getApi);
 // movieReviews(getApi)
 // movieVideos(getApi)
 // movieCredits(getApi)

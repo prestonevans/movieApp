@@ -16,7 +16,6 @@ let endlessScroll = true;
 let currentSaved
 
 
-console.log(savedMovies)
 
 
 
