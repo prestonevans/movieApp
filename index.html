@@ -30,7 +30,7 @@
 
 </head>
 
-<body>
+<body onload="(trendingMovies(render))">
   <nav class="newNav">
     <a href="index.html" class="android-title mdl-layout-title">
       <i class="fa fa-film icon-style"></i>
@@ -49,116 +49,6 @@
   </nav>
 
   <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header" id="movieCards">
-    <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/N_gD9-Oa0fg" title="YouTube video player"
-      frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen></iframe> -->
-    <!-- <div class="android-wear-section">
-      <div class="mask"></div>
-      <div class="android-wear-band">
-        <img src="images/wear.png" alt="movie">
-        <div class="android-wear-band-text">
-          <div class="mdl-typography--display-2 mdl-typography--font-thin">Movie Title</div>
-          <div class="mdl-typography--display-1 mdl-typography--font-thin">Overview</div>
-          <p class="mdl-typography--headline mdl-typography--font-thin">
-            Movie Overview goes here. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Provident illo esse
-            optio, accusantium quae odit eaque, temporibus a placeat eligendi accusamus ipsum aut doloremque laudantium
-            possimus tenetur veniam asperiores tempore eos repellendus delectus sed voluptatibus dolorem. Aspernatur,
-            officiis ipsa asperiores enim impedit fuga cumque, quam blanditiis voluptate quaerat itaque commodi! Fuga
-            minus non, quasi facilis commodi officia a minima aspernatur dicta aliquam delectus qui sapiente vel impedit
-            itaque saepe ratione explicabo suscipit sunt aut dolores fugiat quos! Aspernatur perferendis harum corporis
-            fugit error, totam odio provident magnam commodi ab, facilis, illo praesentium quas nisi sunt distinctio
-            mollitia doloribus. Saepe, perspiciatis?
-          </p>
-          <div class="mdl-typography--display-1 mdl-typography--font-thin">Your Rating</div>
-          <p>
-
-            <i class="far fa-star liked"></i>
-            <i class="far fa-star liked"></i>
-            <i class="far fa-star liked"></i>
-            <i class="far fa-star"></i>
-            <i class="far fa-star"></i>
-          </p>
-        </div>
-      </div>
-    </div> -->
-    <!-- <div class="android-more-section">
-      <div class="android-section-title mdl-typography--display-1-color-contrast center">Featured Movies</div>
-      <div class="android-card-container mdl-grid">
-        <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
-          <div class="mdl-card__media">
-            <img src="images/more-from-1.png">
-          </div>
-          <div class="mdl-card__title">
-            <h4 class="mdl-card__title-text">Get going on Android</h4>
-          </div>
-          <div class="mdl-card__supporting-text">
-            <span class="mdl-typography--font-light mdl-typography--subhead">Four tips to make your switch to Android
-              quick and easy</span>
-          </div>
-          <div class="mdl-card__actions">
-            <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" href="">
-              Make the switch
-            </a>
-          </div>
-        </div>
-
-        <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
-          <div class="mdl-card__media">
-            <img src="images/more-from-4.png">
-          </div>
-          <div class="mdl-card__title">
-            <h4 class="mdl-card__title-text">Create your own Android character</h4>
-          </div>
-          <div class="mdl-card__supporting-text">
-            <span class="mdl-typography--font-light mdl-typography--subhead">Turn the little green Android mascot into
-              you, your friends, anyone!</span>
-          </div>
-          <div class="mdl-card__actions">
-            <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" href="">
-              androidify.com
-            </a>
-          </div>
-        </div>
-
-        <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
-          <div class="mdl-card__media">
-            <img src="images/more-from-2.png">
-          </div>
-          <div class="mdl-card__title">
-            <h4 class="mdl-card__title-text">Get a clean customisable home screen</h4>
-          </div>
-          <div class="mdl-card__supporting-text">
-            <span class="mdl-typography--font-light mdl-typography--subhead">A clean, simple, customisable home screen
-              that comes with the power of Google Now: Traffic alerts, weather and much more, just a swipe
-              away.</span>
-          </div>
-          <div class="mdl-card__actions">
-            <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" href="">
-              Download now
-            </a>
-          </div>
-        </div>
-
-        <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
-          <div class="mdl-card__media">
-            <img src="images/more-from-3.png">
-          </div>
-          <div class="mdl-card__title">
-            <h4 class="mdl-card__title-text">Millions to choose from</h4>
-          </div>
-          <div class="mdl-card__supporting-text">
-            <span class="mdl-typography--font-light mdl-typography--subhead">Hail a taxi, find a recipe, run through a
-              temple – Google Play has all the apps and games that let you make your Android device uniquely
-              yours.</span>
-          </div>
-          <div class="mdl-card__actions">
-            <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" href="">
-              Find apps
-            </a>
-          </div>
-        </div>
-      </div>
-    </div> -->
 
   </div>
   <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">

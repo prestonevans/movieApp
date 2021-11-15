@@ -1,5 +1,8 @@
 trendingMovies(render);
 
+function saveID(id) {
+  localStorage.setItem("MOVIEID", id);
+}
 
 let nameInput = document.getElementById('search-field');
 nameInput.addEventListener('keyup', (e) => {
