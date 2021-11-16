@@ -77,7 +77,15 @@ function detailsRender(data) {
       </div>
     </div>
   </div>
-            </div>`;
+</div>
+<p id='commentTitle' class="mdl-typography--headline mdl-typography--font-thin">Comments</p>
+<form id='comment'>
+  <div class="mdl-textfield mdl-js-textfield">
+    <input class="mdl-textfield__input" type="text" id="sample1" placeholder='Add a comment'>
+    <input type="submit" value="Send">
+  </div>
+</form>
+`;
 	document.getElementById('movieCards').innerHTML = detailsHTML;
 	movieVideos(insertTrailer);
 }
@@ -119,6 +127,7 @@ function savedMoviesRender(data) {
               <h4 class="mdl-card__title-text">${data.original_title}</h4>
             </div>
             <div class="mdl-card__supporting-text">
+              <div class='mask2'></div>
               <span class="mdl-typography--font-light mdl-typography--subhead">${data.overview}</span>
             </div>
             <div class="mdl-card__actions">

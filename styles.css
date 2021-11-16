@@ -302,6 +302,7 @@ a img {
 	min-height: 800px;
 	display: flex;
 	align-items: center;
+	margin-bottom: 16px;
 }
 
 .android-wear-band {
@@ -685,8 +686,37 @@ html {
 #overview {
 	margin-bottom: .5em;
 }
+
+.mdl-js-textfield {
+	display: flex;
+	justify-content: center;
+	width: 90vw;
+	max-width: 800px;
+}
+
 @media only screen and (max-width: 350px) {
 	.newNav {
 		padding: 1rem .25rem;
 	}
+}
+form {
+	display: flex;
+	justify-content: center;
+}
+#commentTitle {
+	margin-left: calc(25% + 24px);
+	font-size: 3rem;
+}
+input[type='submit'] {
+	background: linear-gradient(29deg, #00d473, #a3a3ef);
+	border-radius: 2px;
+	border: none;
+	color: white;
+	text-transform: uppercase;
+	padding: .75em 2em;
+	cursor: pointer;
+	transition: .2s ease-in;
+}
+input[type='submit']:hover {
+	opacity: .7;
 }
