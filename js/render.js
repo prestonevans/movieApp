@@ -31,8 +31,19 @@ function render(data) {
                 <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" href="details.html" onclick="saveID(${data
 					.results[i].id})">
                   More Details
-                </a>
-                <i class="fa-solid fa-heart" onclick="saveMovie(${data.results[i].id})"></i>
+                </a>`
+    for (let j = 0; j < savedMovies.length; j++) {
+      console.log(data.results[i].id)
+      console.log(savedMovies[j].id)
+      if (data.results[i].id == savedMovies[j].id) {
+
+        console.log("ON")
+      }
+      else {
+        console.log("OFF")
+      }
+    }
+    trendingHTML += `<i class="fa-solid fa-heart" onclick="saveMovie(${data.results[i].id})"></i>
               </div>
             </div>
             `;
