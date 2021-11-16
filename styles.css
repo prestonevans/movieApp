@@ -720,3 +720,16 @@ input[type='submit'] {
 input[type='submit']:hover {
 	opacity: .7;
 }
+.commentBox {
+	margin: 0 auto;
+	width: 90vw;
+	max-width: 800px;
+}
+.commentBox p {
+	background-color: #00d473;
+	display: inline-block;
+	color: white;
+	padding: .5em 1em;
+	border-radius: 2em;
+	max-width: 60%;
+}

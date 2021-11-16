@@ -84,7 +84,10 @@ function detailsRender(data) {
     <input class="mdl-textfield__input" type="text" id="sample1" placeholder='Add a comment'>
     <input type="submit" value="Send">
   </div>
-</form>
+  </form>
+  <div class='commentBox'>
+    <p>testing this stuff adf sasfs fas fas f asdf as fas fa sdf asf as dfa sdf asf a sfa sf asdf asd fas df asdf asf as fas dfas dfa sdf s</p>
+  </div>
 `;
 	document.getElementById('movieCards').innerHTML = detailsHTML;
 	movieVideos(insertTrailer);
