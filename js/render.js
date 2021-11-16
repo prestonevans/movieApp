@@ -58,6 +58,11 @@ function render(data) {
               `;
   }
   document.getElementById('movieCards').innerHTML = trendingHTML;
+  document.querySelectorAll('#movieCards i').forEach(heart => {
+    heart.addEventListener('click', () => {
+      heart.classList.add('active')
+    })
+  })
 }
 function loadMore() {
   if (endlessScroll == true) {
