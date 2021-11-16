@@ -77,7 +77,14 @@ function detailsRender(data) {
       </div>
     </div>
   </div>
-            </div>`;
+</div>
+<p id='commentTitle' class="mdl-typography--headline mdl-typography--font-thin">Comments</p>
+<form id='comment'>
+  <div class="mdl-textfield mdl-js-textfield">
+    <input class="mdl-textfield__input" type="text" id="sample1" placeholder='Add a comment'>
+  </div>
+</form>
+`;
 	document.getElementById('movieCards').innerHTML = detailsHTML;
 	movieVideos(insertTrailer);
 }
