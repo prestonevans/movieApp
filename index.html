@@ -38,13 +38,14 @@
 
     <div class="rightNav">
 
-      <a class="mdl-navigation__link mdl-typography--text-uppercase" onclick='resetFeatured()'>Featured</a>
-      <a class="mdl-navigation__link mdl-typography--text-uppercase" onclick="viewSaved()"><i
+      <a class="mdl-navigation__link mdl-typography--text-uppercase" onclick='resetFeatured()'
+        href="index.html">Featured</a>
+      <a class="mdl-navigation__link mdl-typography--text-uppercase" onclick="viewSaved()" href="saved.html"><i
           class="fa-solid fa-heart"></i></a>
       <input class="mdl-textfield__input" type="text" id="search-field">
-      <label class="mdl-button mdl-js-button mdl-button--icon" for="search-field" onclick="searchInput()">
+      <a id="search" class="mdl-button mdl-js-button mdl-button--icon" for="search-field" href="search.html">
         <i class="material-icons">search</i>
-      </label>
+      </a>
     </div>
   </nav>
 
