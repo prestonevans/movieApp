@@ -122,6 +122,7 @@ function savedMoviesRender(data) {
               <h4 class="mdl-card__title-text">${data.original_title}</h4>
             </div>
             <div class="mdl-card__supporting-text">
+              <div class='mask2'></div>
               <span class="mdl-typography--font-light mdl-typography--subhead">${data.overview}</span>
             </div>
             <div class="mdl-card__actions">
