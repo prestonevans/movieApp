@@ -720,3 +720,12 @@ input[type='submit'] {
 input[type='submit']:hover {
 	opacity: .7;
 }
+
+.active{
+	color: #00d473 !important;
+}
+
+.pageFlex{
+	display: flex;
+    flex-wrap: wrap;
+}
