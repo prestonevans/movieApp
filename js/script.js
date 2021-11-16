@@ -1,15 +1,27 @@
-trendingMovies(render);
+$("#search-field").keyup(function (event) {
+  if (event.keyCode === 13) {
+    $("#search").click();
+  }
+});
+
+$("#search").click(function () {
+  window.location.href = "search.html";
+});
 
 function saveID(id) {
   localStorage.setItem("MOVIEID", id);
 }
 
-let nameInput = document.getElementById('search-field');
-nameInput.addEventListener('keyup', (e) => {
-  if (e.keyCode === 13) {
-    searchInput();
-  }
-});
+// let nameInput = document.getElementById('search-field');
+// nameInput.addEventListener('keyup', (e) => {
+//   if (e.keyCode === 13) {
+
+//     $("#search").click();
+//   }
+// });
+// $("#search").click(function () {
+//   alert("Button clicked");
+// });
 function resetFeatured() {
   endlessScroll = true
   currentRender = `trending`;
@@ -30,7 +42,9 @@ function searchInput() {
   <div class="android-section-title mdl-typography--display-1-color-contrast center">${heading}</div>
   <div class="android-card-container mdl-grid">`;
   pageNum = 1;
-  movieSearchQuery = document.getElementById('search-field').value.trim();
+  if (document.getElementById('search-field').value.trim() != "") {
+    movieSearchQuery = document.getElementById('search-field').value.trim();
+  }
   movieSearch(render);
 }
 function saveMovie(id) {
