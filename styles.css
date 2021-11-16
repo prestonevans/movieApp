@@ -707,3 +707,16 @@ form {
 	margin-left: calc(25% + 24px);
 	font-size: 3rem;
 }
+input[type='submit'] {
+	background: linear-gradient(29deg, #00d473, #a3a3ef);
+	border-radius: 2px;
+	border: none;
+	color: white;
+	text-transform: uppercase;
+	padding: .75em 2em;
+	cursor: pointer;
+	transition: .2s ease-in;
+}
+input[type='submit']:hover {
+	opacity: .7;
+}

@@ -82,6 +82,7 @@ function detailsRender(data) {
 <form id='comment'>
   <div class="mdl-textfield mdl-js-textfield">
     <input class="mdl-textfield__input" type="text" id="sample1" placeholder='Add a comment'>
+    <input type="submit" value="Send">
   </div>
 </form>
 `;
