@@ -92,6 +92,11 @@ function insertTrailer(data) {
 function savedAPICall() {
 	endlessScroll = false;
 	let imageSource = ``;
+	// fix for last hearted movie not being deleted
+	if (savedMovies.length === 0) {
+		document.getElementById('movieCards').innerHTML = '';
+		return;
+	}
 	for (let i = 0; i < savedMovies.length; i++) {
 		currentSaved = savedMovies[i];
 		savedMoviesRetrieve(savedMoviesRender);
