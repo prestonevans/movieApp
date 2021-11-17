@@ -65,7 +65,6 @@ function saveMovie(id) {
     }
     savedMovies.push({ id });
   }
-  console.log(savedMovies);
   save();
 }
 
@@ -107,10 +106,6 @@ $(function () {
   $win.scroll(function () {
     if ($win.height() + $win.scrollTop() == $(document).height()) {
       loadMore();
-      // console.log("LoadMore")
-      // console.log(pageNum)
-      // console.log(endlessScroll)
-      // console.log(currentRender)
     }
   });
 });

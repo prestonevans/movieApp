@@ -35,27 +35,18 @@ function render(data) {
 
                 </a>`
     for (let j = 0; j < savedMovies.length; j++) {
-      console.log(data.results[i].id)
-      console.log(savedMovies[j].id)
       if (data.results[i].id == savedMovies[j].id) {
-
-        console.log("ON")
         heartState = `<i class="fa-solid fa-heart active" onclick="saveMovie(${data.results[i].id})"></i>`;
-        console.log(heartState)
         break
       }
       else {
-        console.log("OFF")
         heartState = `<i class="fa-solid fa-heart" onclick="saveMovie(${data.results[i].id})"></i>`
       }
-
     }
-
     if (heartState == "") {
       trendingHTML += `<i class="fa-solid fa-heart" onclick="saveMovie(${data.results[i].id})"></i>`
     } else { trendingHTML += heartState }
     trendingHTML += `</div>
-
               </div>
               `;
   }
@@ -115,18 +106,18 @@ function detailsRender(data) {
   </form>
   <div class='commentBox'>
   </div>`;
-	document.getElementById('movieCards').innerHTML = detailsHTML;
-	movieVideos(insertTrailer);
-	// listen to enter or clicking the send button for comments
-	document.querySelector('form').addEventListener('submit', (e) => {
-		e.preventDefault();
-		// save user input to local storage
-		saveComments();
-		// renders comments after user event
-		renderComments();
-	});
-	// renders comments onload
-	renderComments();
+  document.getElementById('movieCards').innerHTML = detailsHTML;
+  movieVideos(insertTrailer);
+  // listen to enter or clicking the send button for comments
+  document.querySelector('form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    // save user input to local storage
+    saveComments();
+    // renders comments after user event
+    renderComments();
+  });
+  // renders comments onload
+  renderComments();
 
 }
 function insertTrailer(data) {
@@ -138,47 +129,47 @@ function insertTrailer(data) {
 }
 // function to save user comment to local storage
 function saveComments() {
-	// grabs value from user
-	const input = document.querySelector('.mdl-js-textfield input');
-	// loop through all of the movies that are saved in the array savedMovies
-	for (let movie of savedMovies) {
-		// checks to see if movie id in array is the same as the current movie details id
-		if (movie.id == movie_id) {
-			// if there is a movie id in the array that matches the current movie details id
-			// this if else checks if comments have been made to the movie
-			if (!movie.hasOwnProperty('comments')) {
-				movie.comments = [ input.value ];
-				input.value = '';
-				save();
-				return;
-			} else {
-				movie.comments.push(input.value);
-				input.value = '';
-				save();
-				return;
-			}
-		}
-	}
-	// if the function makes it to here it means there isn't a movie with the same id in the array
-	// therefore we made our own object and push it the current movie id and the input value from the user
-	savedMovies.push({ id: Number(movie_id), comments: [ input.value ] });
-	input.value = '';
-	save();
+  // grabs value from user
+  const input = document.querySelector('.mdl-js-textfield input');
+  // loop through all of the movies that are saved in the array savedMovies
+  for (let movie of savedMovies) {
+    // checks to see if movie id in array is the same as the current movie details id
+    if (movie.id == movie_id) {
+      // if there is a movie id in the array that matches the current movie details id
+      // this if else checks if comments have been made to the movie
+      if (!movie.hasOwnProperty('comments')) {
+        movie.comments = [input.value];
+        input.value = '';
+        save();
+        return;
+      } else {
+        movie.comments.push(input.value);
+        input.value = '';
+        save();
+        return;
+      }
+    }
+  }
+  // if the function makes it to here it means there isn't a movie with the same id in the array
+  // therefore we made our own object and push it the current movie id and the input value from the user
+  savedMovies.push({ id: Number(movie_id), comments: [input.value] });
+  input.value = '';
+  save();
 }
 
 // function to render user comments from local storage
 function renderComments() {
-	const commentBox = document.querySelector('.commentBox');
-	for (let movie of savedMovies) {
-		if (movie.id == movie_id) {
-			commentBox.innerHTML = '';
-			for (let comment of movie.comments) {
-				const p = document.createElement('p');
-				p.innerHTML = comment;
-				commentBox.append(p);
-			}
-		}
-	}
+  const commentBox = document.querySelector('.commentBox');
+  for (let movie of savedMovies) {
+    if (movie.id == movie_id) {
+      commentBox.innerHTML = '';
+      for (let comment of movie.comments) {
+        const p = document.createElement('p');
+        p.innerHTML = comment;
+        commentBox.append(p);
+      }
+    }
+  }
 }
 
 function savedAPICall() {
