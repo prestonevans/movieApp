@@ -95,10 +95,6 @@ function detailsRender(data) {
   </div>
   </form>
   <div class='commentBox'>
-    <p>testing this stuff adf sasfs fas fas f asdf as fas fa sdf asf as dfa sdf asf a sfa sf asdf asd fas df asdf asf as fas dfas dfa sdf s</p>
-    <p>testing this stuff adf sasfs fas fas f asdf as fas fa sdf asf as dfa sdf asf a sfa sf asdf asd fas df asdf asf as fas dfas dfa sdf s</p>
-    <p>testing this stuff adf sasfs fas fas f asdf as fas fa sdf asf as dfa sdf asf a sfa sf asdf asd fas df asdf asf as fas dfas dfa sdf s</p>
-    <p>testing this stuff adf sasfs fas fas f asdf as fas fa sdf asf as dfa sdf asf a sfa sf asdf asd fas df asdf asf as fas dfas dfa sdf s</p>
   </div>`;
 	document.getElementById('movieCards').innerHTML = detailsHTML;
 	movieVideos(insertTrailer);
@@ -107,7 +103,11 @@ function detailsRender(data) {
 		e.preventDefault();
 		// save user input to local storage
 		saveComments();
+		// renders comments after user event
+		renderComments();
 	});
+	// renders comments onload
+	renderComments();
 }
 function insertTrailer(data) {
 	let trailerHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/${data.results[0]
@@ -144,6 +144,21 @@ function saveComments() {
 	savedMovies.push({ id: Number(movie_id), comments: [ input.value ] });
 	input.value = '';
 	save();
+}
+
+// function to render user comments from local storage
+function renderComments() {
+	const commentBox = document.querySelector('.commentBox');
+	for (let movie of savedMovies) {
+		if (movie.id == movie_id) {
+			commentBox.innerHTML = '';
+			for (let comment of movie.comments) {
+				const p = document.createElement('p');
+				p.innerHTML = comment;
+				commentBox.append(p);
+			}
+		}
+	}
 }
 
 function savedAPICall() {
