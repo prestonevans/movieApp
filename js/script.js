@@ -65,7 +65,6 @@ function saveMovie(id) {
     }
     savedMovies.push({ id });
   }
-  console.log(savedMovies);
   save();
 }
 
@@ -79,8 +78,11 @@ function viewSaved() {
   savedAPICall();
 }
 function deleteMovie(id) {
-  let index = savedMovies.indexOf(id);
-  savedMovies.splice(index, 1);
+  for (let i = 0; i < savedMovies.length; i++) {
+    if (savedMovies[i].id == id) {
+      savedMovies.splice(i, 1);
+    }
+  }
   trendingHTML = `<div class="android-more-section
   ">
   <div class="android-section-title mdl-typography--display-1-color-contrast center">${heading}</div>
@@ -104,10 +106,6 @@ $(function () {
   $win.scroll(function () {
     if ($win.height() + $win.scrollTop() == $(document).height()) {
       loadMore();
-      // console.log("LoadMore")
-      // console.log(pageNum)
-      // console.log(endlessScroll)
-      // console.log(currentRender)
     }
   });
 });
