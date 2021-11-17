@@ -1,22 +1,22 @@
-let heartState = ''
+let heartState = '';
 let trendingHTML = `<div class="android-more-section
 ">
 <div class="android-section-title mdl-typography--display-1-color-contrast center">${heading}</div>
 <div class="android-card-container mdl-grid">`;
 function render(data) {
-  endlessScroll = true;
-  if (data.results == null) {
-    document.getElementById('movieCards').innerHTML = `<p id="noResults">Your query returned 0 results</p>`;
-    return;
-  }
-  let imageSource = ``;
-  for (let i = 0; i < 20; i++) {
-    if (data.results[i].poster_path === null) {
-      imageSource = 'default-movie.png';
-    } else {
-      imageSource = `https://image.tmdb.org/t/p/w500/${data.results[i].poster_path}`;
-    }
-    trendingHTML += `
+	endlessScroll = true;
+	if (data.results == null) {
+		document.getElementById('movieCards').innerHTML = `<p id="noResults">Your query returned 0 results</p>`;
+		return;
+	}
+	let imageSource = ``;
+	for (let i = 0; i < 20; i++) {
+		if (data.results[i].poster_path === null) {
+			imageSource = 'default-movie.png';
+		} else {
+			imageSource = `https://image.tmdb.org/t/p/w500/${data.results[i].poster_path}`;
+		}
+		trendingHTML += `
             <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
               <div class="mdl-card__media">
               <img src="${imageSource}">
@@ -30,46 +30,53 @@ function render(data) {
               </div>
               <div class="mdl-card__actions">
                 <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" href="details.html" onclick="saveID(${data
-        .results[i].id})">
+					.results[i].id})">
                   More Details
 
-                </a>`
-    for (let j = 0; j < savedMovies.length; j++) {
-      if (data.results[i].id == savedMovies[j].id) {
-        heartState = `<i class="fa-solid fa-heart active" onclick="saveMovie(${data.results[i].id})"></i>`;
-        break
-      }
-      else {
-        heartState = `<i class="fa-solid fa-heart" onclick="saveMovie(${data.results[i].id})"></i>`
-      }
-    }
-    if (heartState == "") {
-      trendingHTML += `<i class="fa-solid fa-heart" onclick="saveMovie(${data.results[i].id})"></i>`
-    } else { trendingHTML += heartState }
-    trendingHTML += `</div>
-              </div>
+                </a>`;
+		for (let j = 0; j < savedMovies.length; j++) {
+			console.log(data.results[i].id);
+			console.log(savedMovies[j].id);
+			if (data.results[i].id == savedMovies[j].id) {
+				console.log('ON');
+				heartState = `<i class="fa-solid fa-heart active" onclick="saveMovie(${data.results[i].id})"></i>`;
+				console.log(heartState);
+				break;
+			} else {
+				console.log('OFF');
+				heartState = `<i class="fa-solid fa-heart" onclick="saveMovie(${data.results[i].id})"></i>`;
+			}
+		}
+
+		if (heartState == '') {
+			trendingHTML += `<i class="fa-solid fa-heart" onclick="saveMovie(${data.results[i].id})"></i>`;
+		} else {
+			trendingHTML += heartState;
+		}
+		trendingHTML += `</div>
+            </div>
               `;
-  }
-  document.getElementById('movieCards').innerHTML = trendingHTML;
-  document.querySelectorAll('#movieCards i').forEach(heart => {
-    heart.addEventListener('click', () => {
-      heart.classList.add('active')
-    })
-  })
+	}
+	document.getElementById('movieCards').innerHTML = trendingHTML;
+	document.querySelectorAll('#movieCards i').forEach((heart) => {
+		heart.addEventListener('click', () => {
+			heart.classList.add('active');
+		});
+	});
 }
 function loadMore() {
-  if (endlessScroll == true) {
-    pageNum += 1;
-    if (currentRender == 'trending') {
-      trendingMovies(render);
-    } else if (currentRender == 'search') {
-      movieSearch(render);
-    }
-  }
+	if (endlessScroll == true) {
+		pageNum += 1;
+		if (currentRender == 'trending') {
+			trendingMovies(render);
+		} else if (currentRender == 'search') {
+			movieSearch(render);
+		}
+	}
 }
 function viewDetails() {
-  movie_id = localStorage.getItem('MOVIEID');
-  movieDetails(detailsRender);
+	movie_id = localStorage.getItem('MOVIEID');
+	movieDetails(detailsRender);
 }
 function detailsRender(data) {
   movie_id = localStorage.getItem('MOVIEID');
@@ -87,11 +94,11 @@ function detailsRender(data) {
         </p>
         <div class="mdl-typography--display-1 mdl-typography--font-thin">Your Rating</div>
         <p>
-          <i class="far fa-star liked"></i>
-          <i class="far fa-star liked"></i>
-          <i class="far fa-star liked"></i>
-          <i class="far fa-star"></i>
-          <i class="far fa-star"></i>
+          <i class="far fa-star" data-num=0></i>
+          <i class="far fa-star" data-num=1></i>
+          <i class="far fa-star" data-num=2></i>
+          <i class="far fa-star" data-num=3></i>
+          <i class="far fa-star" data-num=4></i>
         </p>
       </div>
     </div>
@@ -109,20 +116,32 @@ function detailsRender(data) {
   </form>
   <div class='commentBox'>
   </div>`;
-  document.getElementById('movieCards').innerHTML = detailsHTML;
-  movieVideos(insertTrailer);
+	document.getElementById('movieCards').innerHTML = detailsHTML;
+	movieVideos(insertTrailer);
   movieCredits(insertCast)
   similarMovies(insertSimilarMovies)
-  // listen to enter or clicking the send button for comments
-  document.querySelector('form').addEventListener('submit', (e) => {
-    e.preventDefault();
-    // save user input to local storage
-    saveComments();
-    // renders comments after user event
-    renderComments();
-  });
-  // renders comments onload
-  renderComments();
+	// listen to enter or clicking the send button for comments
+	document.querySelector('form').addEventListener('submit', (e) => {
+		e.preventDefault();
+		// save user input to local storage
+		saveComments();
+		// renders comments after user event
+		renderComments();
+	});
+	// Select and add event listener to all stars on details page
+	// calls save and render function for each event
+	document.querySelectorAll('.android-wear-section i').forEach((star) => {
+		star.addEventListener('click', (e) => {
+			// assigns rating the data dash of the target element aka the element that was clicked
+			let rating = e.target.dataset.num;
+			saveRating(rating);
+			renderRating();
+		});
+	});
+	// renders rating onload
+	renderRating();
+	// renders comments onload
+	renderComments();
 
 }
 function insertCast(data) {
@@ -150,12 +169,45 @@ function insertSimilarMovies(data) {
   }
 }
 function insertTrailer(data) {
-  let trailerHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/${data.results[0]
-    .key}" title="YouTube video player"
+	let trailerHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/${data.results[0]
+		.key}" title="YouTube video player"
     frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
     allowfullscreen></iframe>`;
-  document.getElementById('trailer').innerHTML = trailerHTML;
+	document.getElementById('trailer').innerHTML = trailerHTML;
 }
+// function to render user rating from local storage
+function renderRating() {
+	for (let movie of savedMovies) {
+		if (movie.id == movie_id) {
+			document.querySelectorAll('.android-wear-section i').forEach((star) => {
+				star.classList.remove('liked');
+			});
+			let stars = document.querySelectorAll('.android-wear-section i');
+			stars = Array.from(stars);
+			for (let i = 0; i <= movie.rating; i++) {
+				stars[i].classList.add('liked');
+			}
+		}
+	}
+}
+// function to save user rating from local storage
+function saveRating(rating) {
+	for (let movie of savedMovies) {
+		// checks to see if movie id in array is the same as the current movie details id
+		if (movie.id == movie_id) {
+			// if there is a movie id in the array that matches the current movie details id
+			// this if else checks if comments have been made to the movie
+			movie.rating = rating;
+			save();
+			return;
+		}
+	}
+	// if the function makes it to here it means there isn't a movie with the same id in the array
+	// therefore we made our own object and push it the current movie id and the input value from the user
+	savedMovies.push({ id: Number(movie_id), rating: rating });
+	save();
+}
+
 // function to save user comment to local storage
 function saveComments() {
   // grabs value from user
@@ -202,27 +254,26 @@ function renderComments() {
 }
 
 function savedAPICall() {
-  endlessScroll = false;
-  let imageSource = ``;
-  // fix for last hearted movie not being deleted
-  if (savedMovies.length === 0) {
-    document.getElementById('movieCards').innerHTML = 'You have 0 movies saved';
-    return;
-  }
-  for (let i = 0; i < savedMovies.length; i++) {
-    currentSaved = savedMovies[i].id;
-    savedMoviesRetrieve(savedMoviesRender);
-  }
+	endlessScroll = false;
+	let imageSource = ``;
+	// fix for last hearted movie not being deleted
+	if (savedMovies.length === 0) {
+		document.getElementById('movieCards').innerHTML = 'You have 0 movies saved';
+		return;
+	}
+	for (let i = 0; i < savedMovies.length; i++) {
+		currentSaved = savedMovies[i].id;
+		savedMoviesRetrieve(savedMoviesRender);
+	}
 }
 let savedHTML = '';
 function savedMoviesRender(data) {
-  let imageSource = '';
-  if (data.poster_path === null) {
-    imageSource = 'default-movie.png';
-  }
-  else {
-    imageSource = `https://image.tmdb.org/t/p/w500/${data.poster_path}`;
-    trendingHTML += `
+	let imageSource = '';
+	if (data.poster_path === null) {
+		imageSource = 'default-movie.png';
+	} else {
+		imageSource = `https://image.tmdb.org/t/p/w500/${data.poster_path}`;
+		trendingHTML += `
       <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
       <div class="mdl-card__media">
       <img src="${imageSource}">
@@ -242,8 +293,7 @@ function savedMoviesRender(data) {
       </div>
       </div>
       `;
-  }
+	}
 
-  document.getElementById('movieCards').innerHTML = trendingHTML;
-
+	document.getElementById('movieCards').innerHTML = trendingHTML;
 }
