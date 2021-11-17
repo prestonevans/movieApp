@@ -720,6 +720,16 @@ input[type='submit'] {
 input[type='submit']:hover {
 	opacity: .7;
 }
+
+
+.active{
+	color: #00d473 !important;
+}
+
+.pageFlex{
+	display: flex;
+    flex-wrap: wrap;
+}
 .commentBox {
 	margin: 0 auto;
 	width: 90vw;
@@ -736,3 +746,4 @@ input[type='submit']:hover {
 	font-family: inherit;
 	font-weight: 300;
 }
+

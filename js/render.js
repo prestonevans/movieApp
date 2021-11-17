@@ -1,21 +1,22 @@
+let heartState = ''
 let trendingHTML = `<div class="android-more-section
 ">
 <div class="android-section-title mdl-typography--display-1-color-contrast center">${heading}</div>
 <div class="android-card-container mdl-grid">`;
 function render(data) {
-	endlessScroll = true;
-	if (data.results == null) {
-		document.getElementById('movieCards').innerHTML = `<p id="noResults">Your query returned 0 results</p>`;
-		return;
-	}
-	let imageSource = ``;
-	for (let i = 0; i < 20; i++) {
-		if (data.results[i].poster_path === null) {
-			imageSource = 'default-movie.png';
-		} else {
-			imageSource = `https://image.tmdb.org/t/p/w500/${data.results[i].poster_path}`;
-		}
-		trendingHTML += `
+  endlessScroll = true;
+  if (data.results == null) {
+    document.getElementById('movieCards').innerHTML = `<p id="noResults">Your query returned 0 results</p>`;
+    return;
+  }
+  let imageSource = ``;
+  for (let i = 0; i < 20; i++) {
+    if (data.results[i].poster_path === null) {
+      imageSource = 'default-movie.png';
+    } else {
+      imageSource = `https://image.tmdb.org/t/p/w500/${data.results[i].poster_path}`;
+    }
+    trendingHTML += `
             <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
               <div class="mdl-card__media">
               <img src="${imageSource}">
@@ -29,42 +30,59 @@ function render(data) {
               </div>
               <div class="mdl-card__actions">
                 <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" href="details.html" onclick="saveID(${data
-					.results[i].id})">
+        .results[i].id})">
                   More Details
-                </a>`;
-		for (let j = 0; j < savedMovies.length; j++) {
-			console.log(data.results[i].id);
-			console.log(savedMovies[j].id);
-			if (data.results[i].id == savedMovies[j].id) {
-				console.log('ON');
-			} else {
-				console.log('OFF');
-			}
-		}
-		trendingHTML += `<i class="fa-solid fa-heart" onclick="saveMovie(${data.results[i].id})"></i>
+
+                </a>`
+    for (let j = 0; j < savedMovies.length; j++) {
+      console.log(data.results[i].id)
+      console.log(savedMovies[j].id)
+      if (data.results[i].id == savedMovies[j].id) {
+
+        console.log("ON")
+        heartState = `<i class="fa-solid fa-heart active" onclick="saveMovie(${data.results[i].id})"></i>`;
+        console.log(heartState)
+        break
+      }
+      else {
+        console.log("OFF")
+        heartState = `<i class="fa-solid fa-heart" onclick="saveMovie(${data.results[i].id})"></i>`
+      }
+
+    }
+
+    if (heartState == "") {
+      trendingHTML += `<i class="fa-solid fa-heart" onclick="saveMovie(${data.results[i].id})"></i>`
+    } else { trendingHTML += heartState }
+    trendingHTML += `</div>
+
               </div>
-            </div>
-            `;
-	}
-	document.getElementById('movieCards').innerHTML = trendingHTML;
+              `;
+  }
+  document.getElementById('movieCards').innerHTML = trendingHTML;
+  document.querySelectorAll('#movieCards i').forEach(heart => {
+    heart.addEventListener('click', () => {
+      heart.classList.add('active')
+    })
+  })
 }
 function loadMore() {
-	if (endlessScroll == true) {
-		pageNum += 1;
-		if (currentRender == 'trending') {
-			trendingMovies(render);
-		} else if (currentRender == 'search') {
-			movieSearch(render);
-		}
-	}
+  if (endlessScroll == true) {
+    pageNum += 1;
+    if (currentRender == 'trending') {
+      trendingMovies(render);
+    } else if (currentRender == 'search') {
+      movieSearch(render);
+    }
+  }
 }
 function viewDetails() {
-	movie_id = localStorage.getItem('MOVIEID');
-	movieDetails(detailsRender);
+  movie_id = localStorage.getItem('MOVIEID');
+  movieDetails(detailsRender);
 }
 function detailsRender(data) {
-	endlessScroll = false;
-	let detailsHTML = `<div class="android-wear-section" style = "background: url('https://image.tmdb.org/t/p/w500${data.backdrop_path}'); background-size: cover; background-position: center;">
+  endlessScroll = false;
+  let detailsHTML = `<div class="android-wear-section" style = "background: url('https://image.tmdb.org/t/p/w500${data.backdrop_path}'); background-size: cover; background-position: center;">
     <div class="mask"></div>
     <div class="android-wear-band">
     <div id="trailer"></div>
@@ -93,6 +111,7 @@ function detailsRender(data) {
     <input autocomplete='off' class="mdl-textfield__input" type="text" id="sample1" placeholder='Add a comment'>
     <input type="submit" value="Send">
   </div>
+
   </form>
   <div class='commentBox'>
   </div>`;
@@ -108,13 +127,14 @@ function detailsRender(data) {
 	});
 	// renders comments onload
 	renderComments();
+
 }
 function insertTrailer(data) {
-	let trailerHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/${data.results[0]
-		.key}" title="YouTube video player"
+  let trailerHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/${data.results[0]
+    .key}" title="YouTube video player"
     frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
     allowfullscreen></iframe>`;
-	document.getElementById('trailer').innerHTML = trailerHTML;
+  document.getElementById('trailer').innerHTML = trailerHTML;
 }
 // function to save user comment to local storage
 function saveComments() {
@@ -162,45 +182,48 @@ function renderComments() {
 }
 
 function savedAPICall() {
-	endlessScroll = false;
-	let imageSource = ``;
-	// fix for last hearted movie not being deleted
-	if (savedMovies.length === 0) {
-		document.getElementById('movieCards').innerHTML = '';
-		return;
-	}
-	for (let i = 0; i < savedMovies.length; i++) {
-		currentSaved = savedMovies[i].id;
-		savedMoviesRetrieve(savedMoviesRender);
-	}
+  endlessScroll = false;
+  let imageSource = ``;
+  // fix for last hearted movie not being deleted
+  if (savedMovies.length === 0) {
+    document.getElementById('movieCards').innerHTML = 'You have 0 movies saved';
+    return;
+  }
+  for (let i = 0; i < savedMovies.length; i++) {
+    currentSaved = savedMovies[i].id;
+    savedMoviesRetrieve(savedMoviesRender);
+  }
 }
 let savedHTML = '';
 function savedMoviesRender(data) {
-	let imageSource = '';
-	if (data.poster_path === null) {
-		imageSource = 'default-movie.png';
-	} else {
-		imageSource = `https://image.tmdb.org/t/p/w500/${data.poster_path}`;
-	}
-	trendingHTML += `
-          <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
-            <div class="mdl-card__media">
-            <img src="${imageSource}">
-            </div>
-            <div class="mdl-card__title">
-              <h4 class="mdl-card__title-text">${data.original_title}</h4>
-            </div>
-            <div class="mdl-card__supporting-text">
-              <div class='mask2'></div>
-              <span class="mdl-typography--font-light mdl-typography--subhead">${data.overview}</span>
-            </div>
-            <div class="mdl-card__actions">
-              <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" href="details.html" onclick="saveID(${data.id})">
-                More Details
-              </a>
-              <i class="fa fa-trash-alt" onclick="deleteMovie(${data.id})"></i>
-            </div>
-          </div>
-          `;
-	document.getElementById('movieCards').innerHTML = trendingHTML;
+  let imageSource = '';
+  if (data.poster_path === null) {
+    imageSource = 'default-movie.png';
+  }
+  else {
+    imageSource = `https://image.tmdb.org/t/p/w500/${data.poster_path}`;
+    trendingHTML += `
+      <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
+      <div class="mdl-card__media">
+      <img src="${imageSource}">
+      </div>
+      <div class="mdl-card__title">
+      <h4 class="mdl-card__title-text">${data.original_title}</h4>
+      </div>
+      <div class="mdl-card__supporting-text">
+      <div class='mask2'></div>
+      <span class="mdl-typography--font-light mdl-typography--subhead">${data.overview}</span>
+      </div>
+      <div class="mdl-card__actions">
+      <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" href="details.html" onclick="saveID(${data.id})">
+      More Details
+      </a>
+      <i class="fa fa-trash-alt" onclick="deleteMovie(${data.id})"></i>
+      </div>
+      </div>
+      `;
+  }
+
+  document.getElementById('movieCards').innerHTML = trendingHTML;
+
 }
