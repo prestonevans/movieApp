@@ -727,9 +727,12 @@ input[type='submit']:hover {
 }
 .commentBox p {
 	background-color: #00d473;
-	display: inline-block;
+	width: fit-content;
 	color: white;
-	padding: .5em 1em;
+	padding: .75em 1.25em;
 	border-radius: 2em;
 	max-width: 60%;
+	font-size: 1.2rem;
+	font-family: inherit;
+	font-weight: 300;
 }

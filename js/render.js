@@ -87,10 +87,20 @@ function detailsRender(data) {
   </form>
   <div class='commentBox'>
     <p>testing this stuff adf sasfs fas fas f asdf as fas fa sdf asf as dfa sdf asf a sfa sf asdf asd fas df asdf asf as fas dfas dfa sdf s</p>
-  </div>
-`;
+    <p>testing this stuff adf sasfs fas fas f asdf as fas fa sdf asf as dfa sdf asf a sfa sf asdf asd fas df asdf asf as fas dfas dfa sdf s</p>
+    <p>testing this stuff adf sasfs fas fas f asdf as fas fa sdf asf as dfa sdf asf a sfa sf asdf asd fas df asdf asf as fas dfas dfa sdf s</p>
+    <p>testing this stuff adf sasfs fas fas f asdf as fas fa sdf asf as dfa sdf asf a sfa sf asdf asd fas df asdf asf as fas dfas dfa sdf s</p>
+  </div>`;
 	document.getElementById('movieCards').innerHTML = detailsHTML;
 	movieVideos(insertTrailer);
+	document.querySelector('form').addEventListener('submit', (e) => {
+		e.preventDefault();
+		const commentBox = document.querySelector('.commentBox');
+		const input = document.querySelector('.mdl-js-textfield input');
+		const p = document.createElement('p');
+		p.innerHTML = input.value;
+		commentBox.append(p);
+	});
 }
 function insertTrailer(data) {
 	let trailerHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/${data.results[0]
