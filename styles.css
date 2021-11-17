@@ -747,3 +747,15 @@ input[type='submit']:hover {
 	font-weight: 300;
 }
 
+.scrolling-wrapper {
+	overflow-x: scroll;
+	overflow-y: hidden;
+	white-space: nowrap;
+  
+}
+.scrolling-wrapper img{
+	height: 300px;
+}
+	.scrolling-wrapper .card {
+	  display: inline-block;
+  }
