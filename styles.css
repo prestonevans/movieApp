@@ -721,6 +721,7 @@ input[type='submit']:hover {
 	opacity: .7;
 }
 
+
 .active{
 	color: #00d473 !important;
 }
@@ -729,3 +730,20 @@ input[type='submit']:hover {
 	display: flex;
     flex-wrap: wrap;
 }
+.commentBox {
+	margin: 0 auto;
+	width: 90vw;
+	max-width: 800px;
+}
+.commentBox p {
+	background-color: #00d473;
+	width: fit-content;
+	color: white;
+	padding: .75em 1.25em;
+	border-radius: 2em;
+	max-width: 60%;
+	font-size: 1.2rem;
+	font-family: inherit;
+	font-weight: 300;
+}
+
