@@ -12,6 +12,9 @@ $('#search').click(function () {
 function saveID(id) {
   localStorage.setItem('MOVIEID', id);
 }
+function saveMovieQuery(movieQuery) {
+  localStorage.setItem("MOVIEQUERY", movieQuery)
+}
 
 
 // let nameInput = document.getElementById('search-field');
@@ -37,6 +40,7 @@ function resetFeatured() {
   trendingMovies(render);
 }
 function searchInput() {
+  movieSearchQuery = localStorage.getItem('MOVIEQUERY');
   currentRender = `search`;
   heading = 'Search Results';
   trendingHTML = `<div class="android-more-section
@@ -47,6 +51,7 @@ function searchInput() {
   if (document.getElementById('search-field').value.trim() != '') {
     movieSearchQuery = document.getElementById('search-field').value.trim();
   }
+  saveMovieQuery(movieSearchQuery);
   movieSearch(render);
 }
 function saveMovie(id) {

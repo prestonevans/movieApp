@@ -127,7 +127,7 @@ function savedAPICall() {
   let imageSource = ``;
   // fix for last hearted movie not being deleted
   if (savedMovies.length === 0) {
-    document.getElementById('movieCards').innerHTML = '';
+    document.getElementById('movieCards').innerHTML = 'You have 0 movies saved';
     return;
   }
   for (let i = 0; i < savedMovies.length; i++) {
@@ -140,28 +140,31 @@ function savedMoviesRender(data) {
   let imageSource = '';
   if (data.poster_path === null) {
     imageSource = 'default-movie.png';
-  } else {
-    imageSource = `https://image.tmdb.org/t/p/w500/${data.poster_path}`;
   }
-  trendingHTML += `
-          <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
-            <div class="mdl-card__media">
-            <img src="${imageSource}">
-            </div>
-            <div class="mdl-card__title">
-              <h4 class="mdl-card__title-text">${data.original_title}</h4>
-            </div>
-            <div class="mdl-card__supporting-text">
-              <div class='mask2'></div>
-              <span class="mdl-typography--font-light mdl-typography--subhead">${data.overview}</span>
-            </div>
-            <div class="mdl-card__actions">
-              <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" href="details.html" onclick="saveID(${data.id})">
-                More Details
-              </a>
-              <i class="fa fa-trash-alt" onclick="deleteMovie(${data.id})"></i>
-            </div>
-          </div>
-          `;
+  else {
+    imageSource = `https://image.tmdb.org/t/p/w500/${data.poster_path}`;
+    trendingHTML += `
+      <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
+      <div class="mdl-card__media">
+      <img src="${imageSource}">
+      </div>
+      <div class="mdl-card__title">
+      <h4 class="mdl-card__title-text">${data.original_title}</h4>
+      </div>
+      <div class="mdl-card__supporting-text">
+      <div class='mask2'></div>
+      <span class="mdl-typography--font-light mdl-typography--subhead">${data.overview}</span>
+      </div>
+      <div class="mdl-card__actions">
+      <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" href="details.html" onclick="saveID(${data.id})">
+      More Details
+      </a>
+      <i class="fa fa-trash-alt" onclick="deleteMovie(${data.id})"></i>
+      </div>
+      </div>
+      `;
+  }
+
   document.getElementById('movieCards').innerHTML = trendingHTML;
+
 }
