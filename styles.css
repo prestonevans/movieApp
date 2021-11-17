@@ -429,7 +429,7 @@ a img {
 .android-card-container .mdl-card__actions a {
 	border-top: none;
 	line-height: 32px;
-	font-size: 16px;
+	font-size: 15px;
 }
 
 .android-footer {
@@ -747,3 +747,15 @@ input[type='submit']:hover {
 	font-weight: 300;
 }
 
+.scrolling-wrapper {
+	overflow-x: scroll;
+	overflow-y: hidden;
+	white-space: nowrap;
+  
+}
+.scrolling-wrapper img{
+	height: 300px;
+}
+	.scrolling-wrapper .card {
+	  display: inline-block;
+  }

@@ -11,6 +11,7 @@ $('#search').click(function () {
 
 function saveID(id) {
   localStorage.setItem('MOVIEID', id);
+  location.reload();
 }
 function saveMovieQuery(movieQuery) {
   localStorage.setItem("MOVIEQUERY", movieQuery)
