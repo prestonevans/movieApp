@@ -79,8 +79,11 @@ function viewSaved() {
   savedAPICall();
 }
 function deleteMovie(id) {
-  let index = savedMovies.indexOf(id);
-  savedMovies.splice(index, 1);
+  for (let i = 0; i < savedMovies.length; i++) {
+    if (savedMovies[i].id == id) {
+      savedMovies.splice(i, 1);
+    }
+  }
   trendingHTML = `<div class="android-more-section
   ">
   <div class="android-section-title mdl-typography--display-1-color-contrast center">${heading}</div>
