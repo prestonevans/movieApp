@@ -123,6 +123,15 @@ function detailsRender(data) {
 	// listen to enter or clicking the send button for comments
 	document.querySelector('form').addEventListener('submit', (e) => {
 		e.preventDefault();
+		// input validaion
+		const input = document.querySelector('.mdl-js-textfield input');
+		if (input.value.trim() == '') {
+			input.value = 'Enter Something...';
+			setTimeout(() => {
+				input.value = '';
+			}, 1000);
+			return;
+		}
 		// save user input to local storage
 		saveComments();
 		// renders comments after user event
