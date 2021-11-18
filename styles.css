@@ -750,13 +750,6 @@ input[type='submit']:hover {
 	overflow-x: scroll;
 	overflow-y: hidden;
 	white-space: nowrap;
-}
-.scrolling-wrapper img {
-	height: 300px;
-}
-.scrolling-wrapper .card {
-	display: inline-block;
-}
 
 .android-wear-band-text i {
 	transition: .2s ease-in;
@@ -765,3 +758,36 @@ input[type='submit']:hover {
 	transform: scale(1.25);
 	cursor: pointer;
 }
+	width: 80%;
+	margin: auto;
+  
+}
+.scrolling-wrapper img{
+	width: 150px;
+}
+	.scrolling-wrapper .card {
+	  display: inline-block;
+  }
+
+  .card {
+	  margin: 5px;
+
+	  background-color: #ffffff;
+	  border-radius: 5px;
+	  margin-bottom: 20px;
+	  width: 150px;
+	  height: 250px;
+	  overflow:hidden;
+	  box-shadow: 9px 2px 17px 0px rgba(0,0,0,0.62);
+	  font-family: inherit;
+  }
+  .card p{
+	  padding: 0;
+	  margin: 0;
+	  font-family: inherit;
+	  
+  }
+  h6{
+	  padding: 0;
+	  margin: 0;
+  }
