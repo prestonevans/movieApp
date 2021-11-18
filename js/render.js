@@ -30,7 +30,7 @@ function render(data) {
               </div>
               <div class="mdl-card__actions">
                 <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" href="details.html" onclick="saveID(${data
-					.results[i].id})">
+				.results[i].id})">
                   More Details
 
                 </a>`;
@@ -145,19 +145,24 @@ function detailsRender(data) {
 }
 function insertCast(data) {
 	console.log(data);
-	let castHTML = '';
+	let castHTML = '<h6>Cast</h6>';
+	let imageSource = ``;
+
 	for (let i = 0; i < data.cast.length; i++) {
-		castHTML += `<div class="card">
-      <img src="https://image.tmdb.org/t/p/w500/${data.cast[i].profile_path}">
-      <p>${data.cast[i].name}</p>
-      <p>${data.cast[i].character}</p>
-  </div>`;
+		if (data.cast[i].profile_path !== null) {
+			imageSource = `https://image.tmdb.org/t/p/w500/${data.cast[i].profile_path}`;
+			castHTML += `<div class="card">
+		  <img src="${imageSource}">
+		  <p>${data.cast[i].name}</p>
+		  <p>${data.cast[i].character}</p>
+	  </div>`;
+		}
 	}
 	document.getElementById('cast').innerHTML = castHTML;
 }
 function insertSimilarMovies(data) {
 	console.log(data);
-	let castHTML = '';
+	let castHTML = '<h6>Similar Movies</h6>';
 	for (let i = 0; i < data.results.length; i++) {
 		castHTML += `<div onclick = 'saveID(${data.results[i].id})' class="card">
       <img src="https://image.tmdb.org/t/p/w500/${data.results[i].poster_path}">
@@ -218,7 +223,7 @@ function saveComments() {
 			// if there is a movie id in the array that matches the current movie details id
 			// this if else checks if comments have been made to the movie
 			if (!movie.hasOwnProperty('comments')) {
-				movie.comments = [ input.value ];
+				movie.comments = [input.value];
 				input.value = '';
 				save();
 				return;
@@ -232,7 +237,7 @@ function saveComments() {
 	}
 	// if the function makes it to here it means there isn't a movie with the same id in the array
 	// therefore we made our own object and push it the current movie id and the input value from the user
-	savedMovies.push({ id: Number(movie_id), comments: [ input.value ] });
+	savedMovies.push({ id: Number(movie_id), comments: [input.value] });
 	input.value = '';
 	save();
 }
