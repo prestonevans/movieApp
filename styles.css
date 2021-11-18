@@ -721,14 +721,13 @@ input[type='submit']:hover {
 	opacity: .7;
 }
 
-
-.active{
+.active {
 	color: #00d473 !important;
 }
 
-.pageFlex{
+.pageFlex {
 	display: flex;
-    flex-wrap: wrap;
+	flex-wrap: wrap;
 }
 .commentBox {
 	margin: 0 auto;
@@ -751,11 +750,18 @@ input[type='submit']:hover {
 	overflow-x: scroll;
 	overflow-y: hidden;
 	white-space: nowrap;
-  
 }
-.scrolling-wrapper img{
+.scrolling-wrapper img {
 	height: 300px;
 }
-	.scrolling-wrapper .card {
-	  display: inline-block;
-  }
+.scrolling-wrapper .card {
+	display: inline-block;
+}
+
+.android-wear-band-text i {
+	transition: .2s ease-in;
+}
+.android-wear-band-text i:hover {
+	transform: scale(1.25);
+	cursor: pointer;
+}
