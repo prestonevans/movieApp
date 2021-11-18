@@ -79,9 +79,9 @@ function viewDetails() {
 	movieDetails(detailsRender);
 }
 function detailsRender(data) {
-  movie_id = localStorage.getItem('MOVIEID');
-  endlessScroll = false;
-  let detailsHTML = `<div class="android-wear-section" style = "background: url('https://image.tmdb.org/t/p/w500${data.backdrop_path}'); background-size: cover; background-position: center;">
+	movie_id = localStorage.getItem('MOVIEID');
+	endlessScroll = false;
+	let detailsHTML = `<div class="android-wear-section" style = "background: url('https://image.tmdb.org/t/p/w500${data.backdrop_path}'); background-size: cover; background-position: center;">
     <div class="mask"></div>
     <div class="android-wear-band">
     <div id="trailer"></div>
@@ -118,8 +118,8 @@ function detailsRender(data) {
   </div>`;
 	document.getElementById('movieCards').innerHTML = detailsHTML;
 	movieVideos(insertTrailer);
-  movieCredits(insertCast)
-  similarMovies(insertSimilarMovies)
+	movieCredits(insertCast);
+	similarMovies(insertSimilarMovies);
 	// listen to enter or clicking the send button for comments
 	document.querySelector('form').addEventListener('submit', (e) => {
 		e.preventDefault();
@@ -142,31 +142,30 @@ function detailsRender(data) {
 	renderRating();
 	// renders comments onload
 	renderComments();
-
 }
 function insertCast(data) {
-  console.log(data)
-  let castHTML = ''
-  for (let i = 0; i < data.cast.length; i++) {
-    castHTML += `<div class="card">
+	console.log(data);
+	let castHTML = '';
+	for (let i = 0; i < data.cast.length; i++) {
+		castHTML += `<div class="card">
       <img src="https://image.tmdb.org/t/p/w500/${data.cast[i].profile_path}">
       <p>${data.cast[i].name}</p>
       <p>${data.cast[i].character}</p>
-  </div>`
-  }
-  document.getElementById("cast").innerHTML = castHTML
+  </div>`;
+	}
+	document.getElementById('cast').innerHTML = castHTML;
 }
 function insertSimilarMovies(data) {
-  console.log(data)
-  let castHTML = ''
-  for (let i = 0; i < data.results.length; i++) {
-    castHTML += `<div onclick = 'saveID(${data.results[i].id})' class="card">
+	console.log(data);
+	let castHTML = '';
+	for (let i = 0; i < data.results.length; i++) {
+		castHTML += `<div onclick = 'saveID(${data.results[i].id})' class="card">
       <img src="https://image.tmdb.org/t/p/w500/${data.results[i].poster_path}">
       <p>${data.results[i].title}</p>
       
-  </div>`
-    document.getElementById("similar").innerHTML = castHTML
-  }
+  </div>`;
+		document.getElementById('similar').innerHTML = castHTML;
+	}
 }
 function insertTrailer(data) {
 	let trailerHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/${data.results[0]
@@ -210,47 +209,47 @@ function saveRating(rating) {
 
 // function to save user comment to local storage
 function saveComments() {
-  // grabs value from user
-  const input = document.querySelector('.mdl-js-textfield input');
-  // loop through all of the movies that are saved in the array savedMovies
-  for (let movie of savedMovies) {
-    // checks to see if movie id in array is the same as the current movie details id
-    if (movie.id == movie_id) {
-      // if there is a movie id in the array that matches the current movie details id
-      // this if else checks if comments have been made to the movie
-      if (!movie.hasOwnProperty('comments')) {
-        movie.comments = [input.value];
-        input.value = '';
-        save();
-        return;
-      } else {
-        movie.comments.push(input.value);
-        input.value = '';
-        save();
-        return;
-      }
-    }
-  }
-  // if the function makes it to here it means there isn't a movie with the same id in the array
-  // therefore we made our own object and push it the current movie id and the input value from the user
-  savedMovies.push({ id: Number(movie_id), comments: [input.value] });
-  input.value = '';
-  save();
+	// grabs value from user
+	const input = document.querySelector('.mdl-js-textfield input');
+	// loop through all of the movies that are saved in the array savedMovies
+	for (let movie of savedMovies) {
+		// checks to see if movie id in array is the same as the current movie details id
+		if (movie.id == movie_id) {
+			// if there is a movie id in the array that matches the current movie details id
+			// this if else checks if comments have been made to the movie
+			if (!movie.hasOwnProperty('comments')) {
+				movie.comments = [ input.value ];
+				input.value = '';
+				save();
+				return;
+			} else {
+				movie.comments.push(input.value);
+				input.value = '';
+				save();
+				return;
+			}
+		}
+	}
+	// if the function makes it to here it means there isn't a movie with the same id in the array
+	// therefore we made our own object and push it the current movie id and the input value from the user
+	savedMovies.push({ id: Number(movie_id), comments: [ input.value ] });
+	input.value = '';
+	save();
 }
 
 // function to render user comments from local storage
 function renderComments() {
-  const commentBox = document.querySelector('.commentBox');
-  for (let movie of savedMovies) {
-    if (movie.id == movie_id) {
-      commentBox.innerHTML = '';
-      for (let comment of movie.comments) {
-        const p = document.createElement('p');
-        p.innerHTML = comment;
-        commentBox.append(p);
-      }
-    }
-  }
+	const commentBox = document.querySelector('.commentBox');
+	for (let movie of savedMovies) {
+		if (movie.id == movie_id) {
+			commentBox.innerHTML = '';
+			for (let comment of movie.comments) {
+				const p = document.createElement('p');
+				p.innerText = comment;
+				commentBox.append(p);
+			}
+		}
+	}
 }
 
 function savedAPICall() {
