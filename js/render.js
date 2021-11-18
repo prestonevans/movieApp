@@ -30,7 +30,7 @@ function render(data) {
               </div>
               <div class="mdl-card__actions">
                 <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" href="details.html" onclick="saveID(${data
-				.results[i].id})">
+					.results[i].id})">
                   More Details
 
                 </a>`;
@@ -74,7 +74,7 @@ function viewDetails() {
 	movieDetails(detailsRender);
 }
 function detailsRender(data) {
-	console.log(data)
+	console.log(data);
 	movie_id = localStorage.getItem('MOVIEID');
 	endlessScroll = false;
 	let detailsHTML = `<div class="android-wear-section" style = "background: url('https://image.tmdb.org/t/p/w500${data.backdrop_path}'); background-size: cover; background-position: center;">
@@ -121,7 +121,7 @@ function detailsRender(data) {
 		e.preventDefault();
 		// input validaion
 		const input = document.querySelector('.mdl-js-textfield input');
-		if (input.value.trim() == '') {
+		if (input.value.trim() == '' || input.value === 'Enter Something...') {
 			input.value = 'Enter Something...';
 			setTimeout(() => {
 				input.value = '';
@@ -226,7 +226,7 @@ function saveComments() {
 			// if there is a movie id in the array that matches the current movie details id
 			// this if else checks if comments have been made to the movie
 			if (!movie.hasOwnProperty('comments')) {
-				movie.comments = [input.value];
+				movie.comments = [ input.value ];
 				input.value = '';
 				save();
 				return;
@@ -240,7 +240,7 @@ function saveComments() {
 	}
 	// if the function makes it to here it means there isn't a movie with the same id in the array
 	// therefore we made our own object and push it the current movie id and the input value from the user
-	savedMovies.push({ id: Number(movie_id), comments: [input.value] });
+	savedMovies.push({ id: Number(movie_id), comments: [ input.value ] });
 	input.value = '';
 	save();
 }
