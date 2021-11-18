@@ -35,15 +35,10 @@ function render(data) {
 
                 </a>`;
 		for (let j = 0; j < savedMovies.length; j++) {
-			console.log(data.results[i].id);
-			console.log(savedMovies[j].id);
 			if (data.results[i].id == savedMovies[j].id) {
-				console.log('ON');
 				heartState = `<i class="fa-solid fa-heart active" onclick="saveMovie(${data.results[i].id})"></i>`;
-				console.log(heartState);
 				break;
 			} else {
-				console.log('OFF');
 				heartState = `<i class="fa-solid fa-heart" onclick="saveMovie(${data.results[i].id})"></i>`;
 			}
 		}
@@ -79,6 +74,7 @@ function viewDetails() {
 	movieDetails(detailsRender);
 }
 function detailsRender(data) {
+	console.log(data)
 	movie_id = localStorage.getItem('MOVIEID');
 	endlessScroll = false;
 	let detailsHTML = `<div class="android-wear-section" style = "background: url('https://image.tmdb.org/t/p/w500${data.backdrop_path}'); background-size: cover; background-position: center;">
@@ -153,7 +149,6 @@ function detailsRender(data) {
 	renderComments();
 }
 function insertCast(data) {
-	console.log(data);
 	let castHTML = '<h6>Cast</h6>';
 	let imageSource = ``;
 
@@ -170,7 +165,6 @@ function insertCast(data) {
 	document.getElementById('cast').innerHTML = castHTML;
 }
 function insertSimilarMovies(data) {
-	console.log(data);
 	let castHTML = '<h6>Similar Movies</h6>';
 	for (let i = 0; i < data.results.length; i++) {
 		castHTML += `<div onclick = 'saveID(${data.results[i].id})' class="card">

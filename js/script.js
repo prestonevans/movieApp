@@ -5,9 +5,7 @@ $('#search-field').keyup(function (event) {
 });
 
 $('#search').click(function () {
-  console.log("click")
   searchInput()
-  console.log(movieSearchQuery)
   window.location.href = 'search.html';
 });
 
@@ -100,6 +98,7 @@ $(function () {
   let $win = $(window);
   $win.scroll(function () {
     if ($win.height() + $win.scrollTop() == $(document).height()) {
+      loadMore();
       loadMore();
     }
   });
