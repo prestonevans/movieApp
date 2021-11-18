@@ -759,7 +759,10 @@ input[type='submit']:hover {
 	cursor: pointer;
 }
 
-
+.scrolling-wrapper{
+	width: 80%;
+	margin: auto;
+}
 
 .scrolling-wrapper img{
 	width: 150px;
@@ -777,7 +780,7 @@ input[type='submit']:hover {
 	  width: 150px;
 	  height: 250px;
 	  overflow:hidden;
-	  box-shadow: 9px 2px 17px 0px rgba(0,0,0,0.62);
+	  box-shadow: 9px 2px 17px 0px rgba(0,0,0,0.3);
 	  font-family: inherit;
   }
   .card p{
@@ -789,6 +792,8 @@ input[type='submit']:hover {
   h6{
 	  padding: 0;
 	  margin: 0;
+	  font-family: inherit;
+	  font-weight: 200;
   }
 
   #comment input[type='text'] {
