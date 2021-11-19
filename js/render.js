@@ -6,7 +6,7 @@ let trendingHTML = `<div class="android-more-section
 function render(data) {
 	console.log(data)
 	endlessScroll = true;
-	if (data.results == null) {
+	if (data.errors || data.results.length == 0) {
 		document.getElementById('movieCards').innerHTML = `<p id="noResults">Your query returned 0 results</p>`;
 		return;
 	}
