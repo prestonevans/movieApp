@@ -4,14 +4,15 @@ let trendingHTML = `<div class="android-more-section
 <div class="android-section-title mdl-typography--display-1-color-contrast center">${heading}</div>
 <div class="android-card-container mdl-grid">`;
 function render(data) {
+	console.log(data)
 	endlessScroll = true;
-	if (data.results == null) {
+	if (data.errors || data.results.length == 0) {
 		document.getElementById('movieCards').innerHTML = `<p id="noResults">Your query returned 0 results</p>`;
 		return;
 	}
 	let imageSource = ``;
-	for (let i = 0; i < 20; i++) {
-		if (data.results[i].poster_path === null) {
+	for (let i = 0; i < data.results.length; i++) {
+		if (data.results[i].poster_path == null) {
 			imageSource = 'default-movie.png';
 		} else {
 			imageSource = `https://image.tmdb.org/t/p/w500/${data.results[i].poster_path}`;
