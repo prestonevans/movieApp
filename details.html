@@ -33,16 +33,21 @@
 
 <body onload="viewDetails()">
     <nav class="newNav">
-        <a href="index.html" class="android-title mdl-layout-title">
-            <i class="fa fa-film icon-style"></i>
-        </a>
+        <div class="leftNav">
+            <a href="index.html" class="android-title mdl-layout-title">
+                <i class="fa fa-film icon-style"></i>
+            </a>
+            <div>
+                <a class="mdl-navigation__link mdl-typography--text-uppercase" onclick='resetFeatured()'
+                    href="index.html">Featured</a>
+                <a class="mdl-navigation__link mdl-typography--text-uppercase" onclick="viewSaved()"
+                    href="saved.html"><i class="fa-solid fa-heart"></i></a>
+
+            </div>
+        </div>
 
         <div class="rightNav">
 
-            <a class="mdl-navigation__link mdl-typography--text-uppercase" onclick='resetFeatured()'
-                href="index.html">Featured</a>
-            <a class="mdl-navigation__link mdl-typography--text-uppercase" onclick="viewSaved()" href="saved.html"><i
-                    class="fa-solid fa-heart"></i></a>
             <input class="mdl-textfield__input" type="text" id="search-field">
             <a id="search" class="mdl-button mdl-js-button mdl-button--icon" for="search-field" href="search.html">
                 <i class="material-icons">search</i>
