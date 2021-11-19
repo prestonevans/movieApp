@@ -254,7 +254,7 @@ function renderComments() {
 			for (let comment of movie.comments) {
 				const p = document.createElement('p');
 				p.innerText = comment;
-				commentBox.append(p);
+				commentBox.prepend(p);
 			}
 		}
 	}
