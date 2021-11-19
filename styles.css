@@ -605,7 +605,7 @@ i {
 	padding: 1rem 1rem;
 	background-color: #fafafa;
 }
-.leftNav a {
+.leftNav a:not(:last-child) {
 	margin-right: 1rem;
 }
 .newNav i:hover {
@@ -838,6 +838,6 @@ iframe {
 	max-width: 560px;
 	width: 90%;
 }
-#similar .card:hover{
-cursor: pointer;
+#similar .card:hover {
+	cursor: pointer;
 }
