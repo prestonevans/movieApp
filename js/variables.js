@@ -7,6 +7,7 @@ let movie_id = ``;
 let currentRender = '';
 let endlessScroll = true;
 let currentSaved
+let totalPages
 
 
 //Saved Movies

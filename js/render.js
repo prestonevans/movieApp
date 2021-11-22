@@ -4,7 +4,9 @@ let trendingHTML = `<div class="android-more-section">
 <div class="android-section-title mdl-typography--display-1-color-contrast center">${heading}</div>
 <div class="android-card-container mdl-grid">`;
 function render(data) {
+	console.log(data)
 	endlessScroll = true;
+	totalPages = data.total_pages
 	if (data.errors || data.results.length == 0) {
 		document.getElementById('movieCards').innerHTML = `<p id="noResults">Your query returned 0 results</p>`;
 		return;
@@ -62,6 +64,7 @@ function render(data) {
 }
 // Render More Pages
 function loadMore() {
+	if (totalPages == pageNum) return
 	if (endlessScroll == true) {
 		pageNum += 1;
 		if (currentRender == 'trending') {
