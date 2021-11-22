@@ -1,16 +1,16 @@
 //Save Movie ID
-function viewDetails() {
-    movie_id = localStorage.getItem('MOVIEID');
-    movieDetails(detailsRender);
-}
+//Required to switch html documents
+
 //Render Details
 function detailsRender(data) {
+    //grab id from local storage
     movie_id = localStorage.getItem('MOVIEID');
     endlessScroll = false;
     let detailsHTML = `<div class="android-wear-section" style = "background: url('https://image.tmdb.org/t/p/w500${data.backdrop_path}'); background-size: cover; background-position: center;">
     <div class="mask"></div>
-    <div class="android-wear-band">
-    <div id="trailer"></div>
+    <div class="android-wear-band">`
+    //Empty Trailer Div
+    detailsHTML += `<div id="trailer"></div>
       <div class="android-wear-band-text">
         <div class="mdl-typography--display-2 mdl-typography--font-thin">${data.original_title}</div>
         <div class="mdl-typography--display-1 mdl-typography--font-thin">Overview</div>
@@ -29,8 +29,9 @@ function detailsRender(data) {
       </div>
     </div>
   </div>
-</div>
-<h6>Cast</h6>
+</div>`
+    //Empty Cast and Similar Movie Divs
+    detailsHTML += `<h6>Cast</h6>
 <div id = "cast" class="scrolling-wrapper"></div>
 <h6>Similar Movies</h6>
 <div id = "similar" class="scrolling-wrapper"></div>
@@ -111,6 +112,8 @@ function insertSimilarMovies(data) {
         document.getElementById('similar').innerHTML = castHTML;
     }
 }
+
+
 // function to render user rating from local storage
 function renderRating() {
     for (let movie of savedMovies) {

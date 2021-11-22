@@ -7,8 +7,7 @@ function trendingMovies(cb) {
 //OnSearch
 function movieSearch(cb) {
     fetch(
-        `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${movieSearchQuery}%20&page=${pageNum}&include_adult=false`
-    )
+        `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${movieSearchQuery}%20&page=${pageNum}&include_adult=false`)
         .then((response) => response.json())
         .then((data) => cb(data));
 }
@@ -34,18 +33,8 @@ function movieCredits(cb) {
         .then((response) => response.json())
         .then((data) => cb(data));
 }
-function releaseDate(cb) {
-    fetch(`https://api.themoviedb.org/3/movie/${movie_id}/release_dates?api_key=${apiKey}`)
-        .then((response) => response.json())
-        .then((data) => cb(data));
-}
 function similarMovies(cb) {
     fetch(`https://api.themoviedb.org/3/movie/${movie_id}/similar?api_key=${apiKey}&language=en-US&page=1`)
-        .then((response) => response.json())
-        .then((data) => cb(data));
-}
-function movieReviews(cb) {
-    fetch(`https://api.themoviedb.org/3/movie/${movie_id}/reviews?api_key=${apiKey}&language=en-US&page=1`)
         .then((response) => response.json())
         .then((data) => cb(data));
 }

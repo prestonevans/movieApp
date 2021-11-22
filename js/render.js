@@ -1,7 +1,6 @@
 // Featured and Searched Render
 let heartState = '';
-let trendingHTML = `<div class="android-more-section
-">
+let trendingHTML = `<div class="android-more-section">
 <div class="android-section-title mdl-typography--display-1-color-contrast center">${heading}</div>
 <div class="android-card-container mdl-grid">`;
 function render(data) {

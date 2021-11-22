@@ -1,24 +1,28 @@
-//Search Event Listener
-$('#search-field').keyup(function (event) {
-  if (event.keyCode === 13) {
-    $('#search').click();
-  }
-});
-$('#search').click(function () {
-  searchInput()
-  window.location.href = 'search.html';
-});
-
-//Save Movie IDs and Querys
-function saveID(id) {
-  localStorage.setItem('MOVIEID', id);
-  location.reload();
+//OnLoad Functions
+function searchLoad() {
+  currentRender = `search`;
+  heading = 'Search Results';
+  trendingHTML = `<div class="android-more-section
+  ">
+  <div class="android-section-title mdl-typography--display-1-color-contrast center">${heading}</div>
+  <div class="android-card-container mdl-grid">`;
+  pageNum = 1;
+  movieSearchQuery = localStorage.getItem('MOVIEQUERY');
+  movieSearch(render);
 }
-function saveMovieQuery(movieQuery) {
-  localStorage.setItem("MOVIEQUERY", movieQuery)
+function viewSaved() {
+  heading = 'Saved Movies';
+  trendingHTML = `<div class="android-more-section
+  ">
+  <div class="android-section-title mdl-typography--display-1-color-contrast center">${heading}</div>
+  <div class="android-card-container mdl-grid">`;
+  savedAPICall();
 }
-
-// Featured Function
+function viewDetails() {
+  //pass id to local storage
+  movie_id = localStorage.getItem('MOVIEID');
+  movieDetails(detailsRender);
+}
 function resetFeatured() {
   endlessScroll = true;
   currentRender = `trending`;
@@ -31,7 +35,6 @@ function resetFeatured() {
   movieSearchQuery = document.getElementById('search-field').value.trim();
   trendingMovies(render);
 }
-
 //Search Function
 function searchInput() {
   if (document.getElementById('search-field').value.trim() != '') {
@@ -39,19 +42,15 @@ function searchInput() {
   }
   saveMovieQuery(movieSearchQuery);
 }
-function searchLoad() {
-  currentRender = `search`;
-  heading = 'Search Results';
-  trendingHTML = `<div class="android-more-section
-  ">
-  <div class="android-section-title mdl-typography--display-1-color-contrast center">${heading}</div>
-  <div class="android-card-container mdl-grid">`;
-  pageNum = 1;
-  movieSearchQuery = localStorage.getItem('MOVIEQUERY');
-  movieSearch(render);
+//Save Movie IDs and Querys to move Between Pages
+function saveID(id) {
+  localStorage.setItem('MOVIEID', id);
+  location.reload();
 }
-
-//Save Function
+function saveMovieQuery(movieQuery) {
+  localStorage.setItem("MOVIEQUERY", movieQuery)
+}
+//Like Function
 function saveMovie(id) {
   if (savedMovies.length == 0) {
     savedMovies.push({ id });
@@ -64,14 +63,6 @@ function saveMovie(id) {
     savedMovies.push({ id });
   }
   save();
-}
-function viewSaved() {
-  heading = 'Saved Movies';
-  trendingHTML = `<div class="android-more-section
-  ">
-  <div class="android-section-title mdl-typography--display-1-color-contrast center">${heading}</div>
-  <div class="android-card-container mdl-grid">`;
-  savedAPICall();
 }
 function deleteMovie(id) {
   for (let i = 0; i < savedMovies.length; i++) {
@@ -86,7 +77,6 @@ function deleteMovie(id) {
   save();
   savedAPICall();
 }
-
 // Back to Top Show/Hide
 window.onscroll = function () {
   if (scrollY >= 1000) {
@@ -106,4 +96,13 @@ $(function () {
     }
   });
 });
-
+//Search Event Listener
+$('#search-field').keyup(function (event) {
+  if (event.keyCode === 13) {
+    $('#search').click();
+  }
+});
+$('#search').click(function () {
+  searchInput()
+  window.location.href = 'search.html';
+});
