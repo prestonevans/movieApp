@@ -21,7 +21,10 @@ function render(data) {
 		trendingHTML += `
             <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
               <div class="mdl-card__media">
-              <img src="${imageSource}">
+			  <a href="details.html" onclick="saveID(${data
+				.results[i].id})">
+				<img src="${imageSource}">
+                </a>
               </div>
               <div class="mdl-card__title">
                 <h4 class="mdl-card__title-text">${data.results[i].original_title}</h4>
@@ -94,7 +97,9 @@ function savedMoviesRender(data) {
 		trendingHTML += `
       <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
       <div class="mdl-card__media">
+	  <a href="details.html" onclick="saveID(${data.id})">
       <img src="${imageSource}">
+      </a>
       </div>
       <div class="mdl-card__title">
       <h4 class="mdl-card__title-text">${data.original_title}</h4>
