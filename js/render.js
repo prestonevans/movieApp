@@ -5,7 +5,7 @@ let trendingHTML = `<div class="android-more-section">
 <div class="android-card-container mdl-grid">`;
 function render(data) {
 	endlessScroll = true;
-	currentRender = 'trending'
+
 	if (data.errors || data.results.length == 0) {
 		document.getElementById('movieCards').innerHTML = `<p id="noResults">Your query returned 0 results</p>`;
 		return;
