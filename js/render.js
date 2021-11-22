@@ -90,6 +90,7 @@ function savedAPICall() {
 }
 let savedHTML = '';
 function savedMoviesRender(data) {
+	console.log(data)
 	let imageSource = '';
 	if (data.poster_path === null) {
 		imageSource = 'default-movie.png';
