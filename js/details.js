@@ -3,7 +3,6 @@
 
 //Render Details
 function detailsRender(data) {
-    console.log(data)
     //grab id from local storage
     movie_id = localStorage.getItem('MOVIEID');
     endlessScroll = false;
@@ -84,7 +83,6 @@ function detailsRender(data) {
 }
 //Rendering of Elements
 function insertTrailer(data) {
-    console.log(data)
     let trailerHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/${data.results[0]
         .key}" title="YouTube video player"
     frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -92,7 +90,6 @@ function insertTrailer(data) {
     document.getElementById('trailer').innerHTML = trailerHTML;
 }
 function insertCast(data) {
-    console.log(data)
     let castHTML = '';
     let imageSource = ``;
     for (let i = 0; i < data.cast.length; i++) {
@@ -107,7 +104,6 @@ function insertCast(data) {
     document.getElementById('cast').innerHTML = castHTML;
 }
 function insertSimilarMovies(data) {
-    console.log(data)
     let castHTML = '';
     for (let i = 0; i < data.results.length; i++) {
         castHTML += `<div onclick = 'saveID(${data.results[i].id})' class="card">

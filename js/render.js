@@ -4,7 +4,6 @@ let trendingHTML = `<div class="android-more-section">
 <div class="android-section-title mdl-typography--display-1-color-contrast center">${heading}</div>
 <div class="android-card-container mdl-grid">`;
 function render(data) {
-	console.log(data)
 	endlessScroll = true;
 	totalPages = data.total_pages
 	if (data.errors || data.results.length == 0) {
@@ -90,7 +89,6 @@ function savedAPICall() {
 }
 let savedHTML = '';
 function savedMoviesRender(data) {
-	console.log(data)
 	let imageSource = '';
 	if (data.poster_path === null) {
 		imageSource = 'default-movie.png';
